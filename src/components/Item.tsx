@@ -1,5 +1,6 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
+
 const StyledDiv = styled.div`
   width: 100px;
   height: 100px;
@@ -7,7 +8,7 @@ const StyledDiv = styled.div`
 `;
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Item({ children }: Props) {

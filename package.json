@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite && webpack-dev-server --hot",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -13,7 +13,8 @@
     "react-router-dom": "^6.3.0",
     "styled-component": "^2.8.0",
     "styled-components": "^5.3.5",
-    "styled-reset": "^4.4.1"
+    "styled-reset": "^4.4.1",
+    "vite-plugin-svgr": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

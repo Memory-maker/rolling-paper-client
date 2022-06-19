@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import reset from 'styled-reset';
 import Router from './routes';
+import theme from "./theme";
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -29,10 +30,10 @@ const GlobalStyles = createGlobalStyle`
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Router />
-    </>
+    </ThemeProvider>
   );
 }
 

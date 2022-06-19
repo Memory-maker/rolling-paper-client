@@ -1,16 +1,16 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Main from '../pages/Main';
-import ExamplePage from '../pages/ExamplePage';
 import MakeRoll from '../pages/MakeRoll';
+import Home from "../pages/Home";
+import Editor from '../pages/Editor';
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/example" element={<ExamplePage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/editor" element={<Editor />} />
         <Route path="/create" element={<MakeRoll />} />
       </Routes>
     </BrowserRouter>
