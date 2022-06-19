@@ -21,7 +21,7 @@ const Card = styled.textarea.attrs((props: CardProps, ref: HTMLTextAreaElement) 
   font-weight: 300;
   padding: 66px 30px;
   border: none;
-  outline: none;,
+  outline: none;
   border-radius: 20px;
 
   font-size: 32px;
