@@ -1,18 +1,17 @@
 import React from "react";
 
 const ShareButton = () => {
-  const shareData = {};
+  const shareData = {
+    title: "롤링 페이퍼",
+    text: "롤링 페이퍼",
+    url: `${window.URL}/rollingpaper`,
+  };
   return (
     <div
       onClick={() => {
-        console.log("??");
         if (navigator.canShare && navigator.canShare(shareData)) {
           navigator
-            .share({
-              title: "기록하며 성장하기",
-              text: "Hello World",
-              url: `${window.URL}/rollingpaper`,
-            })
+            .share(shareData)
             .then(() => console.log("공유 성공"))
             .catch((error) => console.log("공유 실패", error));
         }

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { cardColor, colors } from "../../../theme/color";
+import { fonts } from "../../../theme/font";
 import CardType from "../utils/Card.type";
 import cardDummy from "../utils/cardDummy";
 
@@ -27,12 +28,17 @@ interface CardContainerProps {
 }
 
 const CardContainer = styled.div<CardContainerProps>`
-  display: flex;
+  font-size: 16px;
+  box-sizing: border-box;
   padding: 20px;
   width: 160px;
   height: 160px;
-  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
   background-color: ${(props) => cardColor[props.background]};
+  font-family: ${(props) => fonts[props.font]};
   border-radius: 20px;
   transform: ${(props) => (props.index % 2 === 0 ? "rotate(-10deg)" : "rotate(10deg)")};
 `;
