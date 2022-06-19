@@ -1,6 +1,6 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import reset from 'styled-reset';
-import Router from './routes';
+import { createGlobalStyle, ThemeProvider } from "styled-components";
+import reset from "styled-reset";
+import Router from "./routes";
 import theme from "./theme";
 
 const GlobalStyles = createGlobalStyle`
@@ -25,10 +25,9 @@ const GlobalStyles = createGlobalStyle`
   input, textarea, select, button { 
     font-family:inherit; 
   }
-
 `;
 
-function App() {
+function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
