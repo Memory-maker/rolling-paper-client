@@ -6,7 +6,6 @@ type Colors = {
   GRAY_MID_COLOR: String;
   GRAY_LOW_COLOR: String;
   DARK_BG_COLOR: String;
-
   KAKAO_COLOR: String;
   WHITE_COLOR: String;
 };
