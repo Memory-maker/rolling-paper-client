@@ -1,8 +1,22 @@
 import React from "react";
 
 const ShareButton = () => {
+  const shareData = {};
   return (
     <div
+      onClick={() => {
+        console.log("??");
+        if (navigator.canShare && navigator.canShare(shareData)) {
+          navigator
+            .share({
+              title: "기록하며 성장하기",
+              text: "Hello World",
+              url: `${window.URL}/rollingpaper`,
+            })
+            .then(() => console.log("공유 성공"))
+            .catch((error) => console.log("공유 실패", error));
+        }
+      }}
       dangerouslySetInnerHTML={{
         __html: `<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="60" height="60" rx="30" fill="#F05A39"/>
