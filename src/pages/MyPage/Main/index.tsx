@@ -1,20 +1,20 @@
-import styled from 'styled-components';
-import { ReactComponent as ArrowDownIcon } from '/src/assets/svgs/arrow-down.svg';
-import { ReactComponent as BlindIcon } from '/src/assets/svgs/blind.svg';
-import { ReactComponent as LockIcon } from '/src/assets/svgs/lock.svg';
+import styled from "styled-components";
+import { ReactComponent as ArrowDownIcon } from "/src/assets/svgs/arrow-down.svg";
+import { ReactComponent as BlindIcon } from "/src/assets/svgs/blind.svg";
+import { ReactComponent as LockIcon } from "/src/assets/svgs/lock.svg";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 const USER_DATA = [
   {
     id: 1,
-    title: '3학년 2반 친구들',
-    dueDate: '2022.12.16',
+    title: "3학년 2반 친구들",
+    dueDate: "2022.12.16",
   },
   {
     id: 2,
-    title: '구글 스프린트 9기',
-    dueDate: '2022.06.27',
+    title: "구글 스프린트 9기",
+    dueDate: "2022.06.27",
   },
 ];
 
@@ -62,10 +62,10 @@ const StyledMainTitle = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  font-family: 'LeeSeoyun';
+  font-family: "LeeSeoyun";
   font-size: 20px;
-  border-top: 2px solid var(--black-color);
-  border-bottom: 2px solid var(--black-color);
+  border-top: 2px solid #222;
+  border-bottom: 2px solid #222;
   width: 100%;
   height: 50px;
 `;
@@ -86,10 +86,10 @@ const StyledMainItems = styled.div`
   height: 78px;
   line-height: 78px;
   border-radius: 15px;
-  background: var(--white-color);
-  border: 1px solid var(--point-low-color);
-  color: var(--white-color);
-  font-family: 'LeeSeoYun';
+  background: #fff;
+  border: 1px solid #f05a39cc;
+  color: #fff;
+  font-family: "LeeSeoYun";
   font-size: 16px;
 `;
 
@@ -100,7 +100,7 @@ const StytledMainItemTitle = styled.div`
   width: 200px;
   height: 100%;
   padding: 0 12px;
-  background: var(--point-low-color);
+  background: #f05a39cc;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 `;
@@ -110,8 +110,8 @@ const StyledMainItemDate = styled.div`
   width: 140px;
   height: 100%;
   padding-left: 12px;
-  background: var(--white-color);
-  color: var(--black-color);
+  background: #fff;
+  color: #222;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 `;

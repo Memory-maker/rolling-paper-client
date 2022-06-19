@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import styled from 'styled-components';
+import { ReactNode } from "react";
+import styled from "styled-components";
 
 interface Props {
   children: ReactNode;
@@ -18,10 +18,10 @@ const StyledHeader = styled.header`
   padding: 16px;
   white-space: pre-line;
   font-size: 32px;
-  font-family: 'LeeSeoyun';
+  font-family: "LeeSeoyun";
   font-weight: 400;
   mark {
     background: none;
-    color: var(--sub-point-color);
+    color: #ffba47;
   }
 `;

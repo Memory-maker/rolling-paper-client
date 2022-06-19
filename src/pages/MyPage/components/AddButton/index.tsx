@@ -1,12 +1,12 @@
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { ReactComponent as PaperAirPlaneIcon } from '/src/assets/svgs/paper-airplane.svg';
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airplane.svg";
 
 function AddButton() {
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate('/');
+    navigate("/");
   }, []);
   return (
     <StyledButton type="button" onClick={handleClickButton}>
@@ -23,10 +23,10 @@ const StyledButton = styled.button`
   right: 24px;
   width: 40px;
   height: 40px;
-  background: var(--point-color);
+  background: #f05a39;
   color: #222;
   border-radius: 50%;
-  border: 1px solid var(--point-color);
+  border: 1px solid #f05a39;
   padding-left: 3px;
   margin: auto;
   cursor: pointer;
@@ -42,6 +42,6 @@ const StyledIcon = styled(PaperAirPlaneIcon)`
   path,
   line {
     stroke-width: 2px;
-    stroke: var(--white-color);
+    stroke: #fff;
   }
 `;

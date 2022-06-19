@@ -1,16 +1,16 @@
-import AddButton from './components/AddButton';
-import styled from 'styled-components';
-import Header from './Header';
-import Main from './Main';
+import AddButton from "./components/AddButton";
+import styled from "styled-components";
+import Header from "./Header";
+import Main from "./Main";
 
 function MyPage() {
-  const USER_NAME = '레몬은 아이셔';
+  const USER_NAME = "레몬은 아이셔";
 
   const renderHeaderInfo = () => {
     return (
       <>
         <mark>{USER_NAME}</mark>
-        {' 님의 \n 롤링페이퍼 저장소'}
+        {" 님의 \n 롤링페이퍼 저장소"}
       </>
     );
   };
@@ -37,7 +37,7 @@ const HeaderWrapper = styled.div`
   position: relative;
   width: 375px;
   height: 768px;
-  background: var(--background-color);
+  background: #fff8eb;
 `;
 
 export default MyPage;
