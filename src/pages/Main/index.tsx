@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import theme from "../../theme";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -25,7 +26,7 @@ const Button = styled.button`
 function Main() {
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate('/mypage');
+    navigate("/mypage");
   }, []);
 
   return (
