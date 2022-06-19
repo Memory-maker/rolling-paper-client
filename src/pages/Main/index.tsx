@@ -25,7 +25,7 @@ const Button = styled.button`
 function Main() {
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate('/example');
+    navigate('/mypage');
   }, []);
 
   return (
