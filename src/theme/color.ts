@@ -1,30 +1,30 @@
 type Colors = {
-  MAIN_BG: string;
-  POINT_COLOR: string;
-  SUBPOINT_COLOR: string;
-  POINT_ROW_COLOR: string;
-  GRAY_MID_COLOR: string;
-  GRAY_LOW_COLOR: string;
-  DARK_BG_COLOR: string;
+  POINT_COLOR: String;
+  MAIN_BG: String;
+  SUBPOINT_COLOR: String;
+  POINT_ROW_COLOR: String;
+  GRAY_MID_COLOR: String;
+  GRAY_LOW_COLOR: String;
+  DARK_BG_COLOR: String;
 
-  KAKAO_COLOR: string;
-  WHITE_COLOR: string;
+  KAKAO_COLOR: String;
+  WHITE_COLOR: String;
 };
 
 interface CardColor {
-  CARD_PINK: string;
-  CARD_BLUE: string;
-  CARD_GREEN: string;
-  CARD_PURPLE: string;
-  CARD_BEIGE: string;
+  CARD_PINK: String;
+  CARD_BLUE: String;
+  CARD_GREEN: String;
+  CARD_PURPLE: String;
+  CARD_BEIGE: String;
 }
 
 interface TextColor {
-  TEXT_RED_COLOR: string;
-  TEXT_BLUE_COLOR: string;
-  TEXT_GREEN_COLOR: string;
-  TEXT_PURPLE_COLOR: string;
-  TEXT_YELLOW_COLOR: string;
+  TEXT_RED_COLOR: String;
+  TEXT_BLUE_COLOR: String;
+  TEXT_GREEN_COLOR: String;
+  TEXT_PURPLE_COLOR: String;
+  TEXT_YELLOW_COLOR: String;
 }
 
 const cardColor: CardColor = {
