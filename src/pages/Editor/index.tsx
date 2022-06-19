@@ -5,6 +5,7 @@ import Card from './components/Card';
 import FontFamilyOption from './components/FontFamilyOption';
 import FontColorOption from './components/FontColorOption';
 import BackgroundColorOption from './components/BackgroundColorOption';
+import ShareButton from '../../components/ShareButton';
 
 const EditorWrapper = styled.div`
   position: relative;
@@ -22,6 +23,7 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  margin-bottom: 18px;
 `;
 
 const MakerWrapper = styled.div`
@@ -30,7 +32,6 @@ const MakerWrapper = styled.div`
   bottom: 0;
   width: 100%;
   height: 300px;
-  // transform: translateY(-100%);
 `;
 
 const EditorTypeSelector = styled.div`
@@ -39,7 +40,7 @@ const EditorTypeSelector = styled.div`
   align-items: center;
   width: 100%;
   height: 60px;
-  // padding: 0px 98px;
+  padding: 0px 80px;
   background-color: rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-size: 32px;
@@ -50,6 +51,7 @@ const EditorTypeOption = styled.div.attrs((props) => ({
 }))`
   flex: 1;
   color: ${(props) => props.color};
+  text-align: center;
 `;
 
 const EditorContent = styled.div`
@@ -77,6 +79,8 @@ const TextEditor = styled.div`
 const TextEditorTitle = styled.div`
   font-size: 24px;
   color: #ffffff;
+  margin-bottom: 12px; 
+  margin-left: 8px;
 `;
 
 const TextEditorSelector = styled.div`
@@ -86,7 +90,7 @@ const TextEditorSelector = styled.div`
 `;
 
 const BACK_GROUND_COLOR_OPTIOS = Object.freeze(['#ffd3d3', '#d3eaff', '#def9c4', '#efccff', '#fff5bf', '#ffffff']);
-const FONT_FAMILY_OPTIONS = Object.freeze(['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy', 'system-ui']);
+const FONT_FAMILY_OPTIONS = Object.freeze(['LeeSeoyun', 'PyeongChangPeace-Light', 'NanumGothic', 'JejuMyeongjo', 'EarlyFontDiary', 'ParkYongJun']);
 const FONT_COLOR_OPTIONS = Object.freeze(['#000000', '#ff0000', '#0085ff', '#7dff00', '#ad00ff', '#ffd600']);
 
 function Editor() {
@@ -123,8 +127,8 @@ function Editor() {
   return (
     <EditorWrapper>
       <ButtonWrapper>
-        <Button>공유</Button>
-        <Button>저장</Button>
+        <ShareButton />
+        <Button>완료</Button>
       </ButtonWrapper>
       <Card
         backgroundColor={backgroundColor}
