@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import GotoBack from "../assets/back-arrow.png";
 
@@ -6,6 +6,7 @@ import Title from "../components/Title";
 import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
 import { colors, textColor } from "../theme/color";
+import Modal from "./Modal";
 
 const Container = styled.div`
     display: flex;
@@ -90,6 +91,12 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
+const ModalText= styled.div`
+  font-size: 48px;
+  text-align: center;
+
+`
+
 interface ShareProps {
   sending_status?: boolean;
   nickname?: string;
@@ -97,13 +104,11 @@ interface ShareProps {
 
 const Sending = (props: ShareProps) => {
   const navigate = useNavigate();
-  // const shareStatus = props.sending_status;
   const shareStatus = true;
-  // const senindgMessage = shareStatus ? "전송 성공!" : "전송 실패ㅠㅠ";
   const senindgMessage = "전송 성공!";
   let nickname = props.nickname;
   nickname = "얌얌은 짱이야";
-
+  const [show, setShow] = useState(false);
   return (
     <Container>
       <Header>
@@ -125,6 +130,7 @@ const Sending = (props: ShareProps) => {
         {shareStatus ? <ShareButton>친구들한테 공유해볼까?</ShareButton> : <ShareButton>다시적기</ShareButton>}
         {shareStatus ? <ShareButton>나도 만들어볼까?</ShareButton> : <ShareButton>전송 취소하기</ShareButton>}
       </ButtonContainer>
+        {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
       </Main>
     </Container>
   );
