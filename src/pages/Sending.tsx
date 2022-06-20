@@ -72,6 +72,7 @@ const ShareButton = styled.button`
   font-size: 24px;
   line-height: 24px;
   color: ${({ theme }) => theme.colors.WHITE_COLOR};
+  cursor: pointer;
 `;
 
 const ShareWrapper = styled.div``;
@@ -83,8 +84,10 @@ interface ShareProps {
 
 const Sending = (props: ShareProps) => {
   const navigate = useNavigate();
-  const shareStatus = props.sending_status;
-  const senindgMessage = shareStatus ? "전송 성공!" : "전송 실패ㅠㅠ";
+  // const shareStatus = props.sending_status;
+  const shareStatus = true;
+  // const senindgMessage = shareStatus ? "전송 성공!" : "전송 실패ㅠㅠ";
+  const senindgMessage = "전송 성공!";
   let nickname = props.nickname;
   nickname = "얌얌은 짱이야";
 
@@ -94,7 +97,6 @@ const Sending = (props: ShareProps) => {
         <img src={GotoBack} alt="back button" onClick={() => navigate(-1)} />
       </Header>
       <Main>
-        <Logo />
         <TitleWrapper>
           <Title />
         </TitleWrapper>

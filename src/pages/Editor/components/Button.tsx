@@ -10,6 +10,7 @@ const Button = styled.button`
   line-height: 25.6px;
   color: #ffffff;
   margin-left: 16px;
+  cursor: pointer;
 `;
 
 export default Button;

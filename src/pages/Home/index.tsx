@@ -67,28 +67,29 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [data, setData] = useState<kakaoProfile | null>(null);
 
-  // const kakaoLogin = () => {
-  //   window.Kakao.Auth.login({
-  //     success: function (serverResponse: kakaoToken) {
-  //       window.Kakao.API.request({
-  //         url: "/v2/user/me",
-  //         success: function ({ kakao_account, id }: kakaoServerRes) {
-  //           const userData = {
-  //             id,
-  //             profile: kakao_account.profile,
-  //           };
-  //           setData(userData);
-  //         },
-  //         fail: function (error: unknown) {
-  //           console.log(error);
-  //         },
-  //       });
-  //     },
-  //     fail: function (error: unknown) {
-  //       console.log(error);
-  //     },
-  //   });
-  // };
+  const kakaoLogin = () => {
+    window.Kakao.Auth.login({
+      success: function (serverResponse: kakaoToken) {
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success: function ({ kakao_account, id }: kakaoServerRes) {
+            // const userData = {
+            //   id,
+            //   profile: kakao_account.profile,
+            // };
+            // setData(userData);
+            navigate("/mypage");
+          },
+          fail: function (error: unknown) {
+            console.log(error);
+          },
+        });
+      },
+      fail: function (error: unknown) {
+        console.log(error);
+      },
+    });
+  };
 
   // const login = async () => {
   //   // 1. 쿠키에서 세션 아이디 꺼낸 뒤, 로그인 api 요청
