@@ -39,8 +39,8 @@ const MyPageLayout = styled.section`
 
 const HeaderWrapper = styled.div`
   position: relative;
-  width: 375px;
-  height: 768px;
+  width: 100%;
+  height: 100%;
   background: #fff8eb;
 `;
 

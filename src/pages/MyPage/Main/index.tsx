@@ -79,12 +79,14 @@ const StyledMainContent = styled.div`
   align-items: flex-start;
   justify-content: center;
   height: fit-content;
+  box-sizing: border-box;
+  padding: 0 16px;
 `;
 
 const StyledMainItems = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 340px;
+  width: 100%;
   height: 78px;
   line-height: 78px;
   border-radius: 15px;
@@ -100,7 +102,7 @@ const StytledMainItemTitle = styled.div`
   display: flex;
   justify-content: space-between;
   font-weight: 400;
-  width: 200px;
+  width: 60%;
   height: 100%;
   padding: 0 12px;
   background: #f05a39cc;
@@ -113,7 +115,7 @@ const StyledMainItemDate = styled.div`
   align-items: center;
   justify-content: space-around;
   font-weight: 400;
-  width: 140px;
+  width: 40%;
   height: 100%;
   padding-left: 12px;
   background: #fff;

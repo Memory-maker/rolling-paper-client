@@ -11,11 +11,14 @@ const EditorWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  margin: auto;
-  width: 375px;
-  height: 768px;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 680px;
+  min-width: 380px;
+  width: 100%;
+  height: 100vh;
   padding: 20px;
+  box-sizing:border-box;
   background-color: #fff8eb;
 `;
 
