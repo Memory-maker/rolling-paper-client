@@ -33,8 +33,6 @@ const cardColor = {
   CARD_GREEN: "#DEF9C4",
   CARD_PURPLE: "#EFCCFF",
   CARD_YELLOW: "#FFF5BF",
-  CARD_BEIGE: "#FFDEBF",
-  CARD_WHITE: "#FFFFFF",
 } as { [id: string]: string };
 
 const textColor = {
