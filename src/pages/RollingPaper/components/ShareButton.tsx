@@ -9,7 +9,7 @@ const ShareButton = () => {
   return (
     <div
       onClick={() => {
-        if (navigator.canShare && navigator.canShare(shareData)) {
+        if (navigator) {
           navigator
             .share(shareData)
             .then(() => console.log("공유 성공"))

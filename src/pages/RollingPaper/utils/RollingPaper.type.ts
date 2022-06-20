@@ -1,5 +1,7 @@
+import Card from "./Card.type";
+
 export interface RollingPaper {
-  cardIds: string[];
+  cards: Card[];
   userName: string;
   paperId: number;
   title: string;

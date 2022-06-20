@@ -22,7 +22,7 @@ const Header = ({ infos }: HeaderProps) => {
       </Title>
       <Buttons>
         <ShareButton />
-        <StickerButton show={show} setShow={setShow} />
+        {/* <StickerButton show={show} setShow={setShow} /> */}
       </Buttons>
     </Container>
   );
@@ -35,7 +35,7 @@ const Container = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 168px;
+  height: 110px;
   padding: 18px 16px;
   display: flex;
   justify-content: space-between;

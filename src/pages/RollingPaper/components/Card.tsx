@@ -6,15 +6,15 @@ import CardType from "../utils/Card.type";
 import cardDummy from "../utils/cardDummy";
 
 interface CardProps {
-  id: string;
+  card: CardType;
   index: number;
+  handleClick: ()=>void;
 }
 
-const Card = ({ index, id }: CardProps) => {
-  const card = cardDummy[id];
+const Card = ({ index, card ,handleClick}: CardProps) => {
   return (
-    <CardContainer index={index} background={card?.background} font={card?.font}>
-      {card?.content}
+    <CardContainer onClick={handleClick} index={index} background={card.background} font={card.font}>
+      {card.content}
     </CardContainer>
   );
 };
@@ -32,7 +32,9 @@ const CardContainer = styled.div<CardContainerProps>`
   box-sizing: border-box;
   padding: 20px;
   width: 160px;
+  min-width: 160px;
   height: 160px;
+  min-height: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box !important;
