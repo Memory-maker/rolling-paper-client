@@ -1,7 +1,7 @@
-import { ReactNode, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { ReactNode, useRef } from "react";
+import ReactDOM from "react-dom";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface Props {
   children: ReactNode;
@@ -16,7 +16,7 @@ const ModalWrapper = styled.div`
   top: 0;
   left: 0;
   z-index: 99;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
 `;
 
@@ -32,18 +32,19 @@ const ModalBody = styled.div`
 `;
 
 function Modal({ children, setIsModalOpen }: Props) {
-  
-  const modalRoot = document.getElementById('modal') as HTMLDivElement;
+  const modalRoot = document.getElementById("modal") as HTMLDivElement;
   const modalRef = useRef<HTMLDivElement>(null);
 
   const handleModalOutsideClick = () => {
     setIsModalOpen(false);
-  }
+  };
 
   return ReactDOM.createPortal(
-  <ModalWrapper  ref={modalRef} onClick={handleModalOutsideClick}>
-    <ModalBody>{children}</ModalBody>
-  </ModalWrapper>, modalRoot);
+    <ModalWrapper ref={modalRef} onClick={handleModalOutsideClick}>
+      <ModalBody>{children}</ModalBody>
+    </ModalWrapper>,
+    modalRoot,
+  );
 }
 
 export default Modal;

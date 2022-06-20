@@ -1,5 +1,5 @@
-import React, { ChangeEvent } from 'react';
-import { RadioButton, RadioButtonLabel } from './Radio';
+import React, { ChangeEvent } from "react";
+import { RadioButton, RadioButtonLabel } from "./Radio";
 
 interface FontOptionProps {
   value: string;
@@ -7,7 +7,7 @@ interface FontOptionProps {
   checked: boolean;
 }
 
-const OPTION_TEXT = '이 색은 어때요?';
+const OPTION_TEXT = "이 색은 어때요?";
 
 function FontColorOption({ value, onChange, checked }: FontOptionProps) {
   return (

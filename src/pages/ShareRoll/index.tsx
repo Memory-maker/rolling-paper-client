@@ -1,13 +1,11 @@
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Modal from '../Modal';
+import Modal from "../Modal";
 
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
-import styled from 'styled-components';
-
-
+import styled from "styled-components";
 
 interface Props {
   setIsModalOpen: (state: boolean) => void;
@@ -87,17 +85,15 @@ const Button = styled.button`
 
 const Span = styled.span`
   padding: 0 15px;
-`
-
+`;
 
 function ShareRoll({ setIsModalOpen }: Props) {
-
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate('/example');
+    navigate("/example");
   }, []);
 
-  return(
+  return (
     <Modal setIsModalOpen={setIsModalOpen}>
       <Wrapper>
         <Title>롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?</Title>
@@ -105,18 +101,17 @@ function ShareRoll({ setIsModalOpen }: Props) {
         <form>
           <Label>롤링페이퍼 링크</Label>
           <InputWrapper>
-            <InputField type="text" name="url"/>
+            <InputField type="text" name="url" />
             <IconWrapper>
-              <ClipboardIcon/>
+              <ClipboardIcon />
             </IconWrapper>
           </InputWrapper>
 
           <Button type="submit" onClick={handleClickButton}>
             <Span>공유하기</Span>
-            <ShareIcon/>
+            <ShareIcon />
           </Button>
         </form>
-
       </Wrapper>
     </Modal>
   );

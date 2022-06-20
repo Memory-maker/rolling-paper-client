@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RadioButtonLabel = styled.label`
   font-size: 12px;
@@ -6,7 +6,7 @@ export const RadioButtonLabel = styled.label`
 `;
 
 export const RadioButton = styled.input.attrs((props) => ({
-  type: 'radio',
+  type: "radio",
   value: props.value,
   name: props.name,
   onChange: props.onChange,

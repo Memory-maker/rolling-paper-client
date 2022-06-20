@@ -4,6 +4,8 @@ const cardColor = {
   CARD_GREEN: "#DEF9C4",
   CARD_PURPLE: "#EFCCFF",
   CARD_YELLOW: "#FFF5BF",
+  CARD_BEIGE: "#FFDEBF",
+  CARD_WHITE: "#FFFFFF",
 } as { [id: string]: string };
 
 const textColor = {
@@ -12,7 +14,7 @@ const textColor = {
   TEXT_GREEN_COLOR: "#7DFF00",
   TEXT_PURPLE_COLOR: "#AD00FF",
   TEXT_YELLOW_COLOR: "#FFD600",
-} as { [id: string]: string };
+};
 
 const colors = {
   MAIN_BG: "#FFF8EB",

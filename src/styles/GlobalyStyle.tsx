@@ -28,16 +28,6 @@ const GlobalStyle = createGlobalStyle`
       font-style: normal;
   }
   @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-<<<<<<< HEAD
-  @font-face {
-    font-family: 'ghanachoco';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-=======
-
->>>>>>> feature/rollingpaper
 
   ${reset};
    * {
