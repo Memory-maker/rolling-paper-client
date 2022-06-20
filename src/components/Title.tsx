@@ -6,7 +6,7 @@ const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("src/assets/imgs/logo.png");
+  background-image: url("./imgs/logo.png");
   background-position: center center;
   background-size: contain;
   width: 300px;
@@ -15,7 +15,7 @@ const Logo = styled.div`
 
 interface Content {
   children: ReactNode;
-};
+}
 
 const Content = styled.div<Content>`
   z-index: 3;
@@ -24,11 +24,8 @@ const Content = styled.div<Content>`
   color: ${colors.POINT_COLOR};
 `;
 
-
 const Title = () => {
-  return (
-    <Logo/>
-  )
-}
+  return <Logo />;
+};
 
 export default Title;

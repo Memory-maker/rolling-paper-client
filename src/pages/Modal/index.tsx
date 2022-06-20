@@ -17,6 +17,7 @@ const ModalWrapper = styled.div`
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
+  position: absolute;
 `;
 
 const ModalBody = styled.div`
@@ -24,7 +25,6 @@ const ModalBody = styled.div`
   position: absolute;
   width: 303px;
   /* height: 583px; */
-
   padding: 32px 24px;
   margin-top: 44px;
   background-color: #ffffff;

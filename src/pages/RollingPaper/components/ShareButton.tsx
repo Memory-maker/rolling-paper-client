@@ -1,21 +1,28 @@
 import React from "react";
 
-const ShareButton = () => {
+interface ButtonProps{
+  setShow: (show: boolean)=>void;
+}
+
+const ShareButton = ({setShow}:ButtonProps) => {
   const shareData = {
     title: "롤링 페이퍼",
     text: "롤링 페이퍼",
     url: `${window.URL}/rollingpaper`,
   };
+
+  function copyToClipboard() {
+    const t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = 'https://rolling-paper-client-blue.vercel.app/rollingpaper';
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+    setShow(true);
+  }
   return (
     <div
-      onClick={() => {
-        if (navigator.canShare && navigator.canShare(shareData)) {
-          navigator
-            .share(shareData)
-            .then(() => console.log("공유 성공"))
-            .catch((error) => console.log("공유 실패", error));
-        }
-      }}
+      onClick={copyToClipboard}
       dangerouslySetInnerHTML={{
         __html: `<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="60" height="60" rx="30" fill="#F05A39"/>

@@ -1,22 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import GotoBack from "../assets/back-arrow.png";
 
 import Title from "../components/Title";
 import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
+import { colors, textColor } from "../theme/color";
+import Modal from "./Modal";
 
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.colors.MAIN_BG};
-`;
-
-const Header = styled.header`
-  padding: 65px 0 0 29px;
-`;
-
-const Main = styled.main`
-  position: relative;
-  display: flex;
+    display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
@@ -24,7 +17,25 @@ const Main = styled.main`
   min-width: 380px;
   width: 100%;
   height: 100vh;
-  padding: 42px;
+`;
+
+const Header = styled.header`
+width: 100%;
+  padding: 24px;
+  height: 100px;
+  background-color: ${colors.MAIN_BG};
+`;
+
+const Main = styled.main`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: ${colors.MAIN_BG};
+  box-sizing: border-box;
+ 
 `;
 
 const TitleWrapper = styled.div`
@@ -50,7 +61,7 @@ const SendStatusMessage = styled.p`
 `;
 
 const Username = styled.p`
-  color: ${({ theme }) => theme.textColor.TEXT_YELLOW_COLOR};
+  color: ${textColor.TEXT_YELLOW_COLOR};
   margin-right: 10px;
 `;
 
@@ -61,9 +72,9 @@ const ShareButton = styled.button`
   top: 555px;
 
   margin-bottom: 16px;
-  background: ${({ theme }) => theme.colors.POINT_COLOR};
+  background: ${colors.POINT_COLOR};
   border: 1px solid;
-  border-color: ${({ theme }) => theme.colors.POINT_COLOR};
+  border-color: ${colors.POINT_COLOR};
   border-radius: 20px;
 
   font-family: "LeeSeoyun";
@@ -71,10 +82,20 @@ const ShareButton = styled.button`
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
-  color: ${({ theme }) => theme.colors.WHITE_COLOR};
+  color: ${colors.WHITE_COLOR};
 `;
 
-const ShareWrapper = styled.div``;
+const ButtonContainer = styled.div`
+  display: flex;
+    flex-direction: column;
+  align-items: center;
+`;
+
+const ModalText= styled.div`
+  font-size: 48px;
+  text-align: center;
+
+`
 
 interface ShareProps {
   sending_status?: boolean;
@@ -83,18 +104,17 @@ interface ShareProps {
 
 const Sending = (props: ShareProps) => {
   const navigate = useNavigate();
-  const shareStatus = props.sending_status;
-  const senindgMessage = shareStatus ? "전송 성공!" : "전송 실패ㅠㅠ";
+  const shareStatus = true;
+  const senindgMessage = "전송 성공!";
   let nickname = props.nickname;
   nickname = "얌얌은 짱이야";
-
+  const [show, setShow] = useState(false);
   return (
     <Container>
       <Header>
-        <img src={GotoBack} alt="back button" onClick={() => navigate(-1)} />
+        <img src={GotoBack} alt="back button" onClick={() => navigate('/rollingpaper')} />
       </Header>
       <Main>
-        <Logo />
         <TitleWrapper>
           <Title />
         </TitleWrapper>
@@ -106,9 +126,11 @@ const Sending = (props: ShareProps) => {
 
           <SendStatusMessage>{senindgMessage}</SendStatusMessage>
         </Contents>
-
-        {shareStatus ? <ShareButton>친구들한테 공유해볼까?</ShareButton> : <ShareButton>다시적기</ShareButton>}
-        {shareStatus ? <ShareButton>나도 만들어볼까?</ShareButton> : <ShareButton>전송 취소하기</ShareButton>}
+      <ButtonContainer>
+        {shareStatus ? <ShareButton onClick={()=>setShow(true)}>친구들한테 공유해볼까?</ShareButton> : <ShareButton>다시적기</ShareButton>}
+        {shareStatus ? <ShareButton onClick={()=>navigate("/")}>나도 만들어볼까?</ShareButton> : <ShareButton>전송 취소하기</ShareButton>}
+      </ButtonContainer>
+        {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
       </Main>
     </Container>
   );
