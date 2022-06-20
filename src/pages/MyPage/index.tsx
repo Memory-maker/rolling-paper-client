@@ -3,7 +3,7 @@ import Main from "./Main";
 import Header from "./Header";
 import AddButton from "./components/AddButton";
 import styled from "styled-components";
-import Modal from "../Modal";
+import Modal from "./Modal";
 
 function MyPage() {
   const USER_NAME = "레몬은 아이셔";
@@ -29,7 +29,7 @@ function MyPage() {
         <Header>{renderHeaderInfo()}</Header>
         <Main />
         <AddButton handleClickButton={handleClickButton} />
-        {isModalOpen && <Modal />}
+        {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
       </HeaderWrapper>
     </MyPageLayout>
   );
