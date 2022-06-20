@@ -52,6 +52,10 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     background: inherit;
     outline: none;
+    font-family: inherit;
+  }
+  input{
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
