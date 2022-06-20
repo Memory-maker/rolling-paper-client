@@ -9,8 +9,10 @@ const Logo = styled.div`
   background-image: url("./imgs/logo.png");
   background-position: center center;
   background-size: contain;
-  width: 300px;
-  height: 220px;
+  max-width: 500px;
+  width: 100%;
+  height: 30vh;
+  background-repeat: no-repeat;
 `;
 
 interface Content {

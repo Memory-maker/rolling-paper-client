@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   margin: 0 auto;
   max-width: 680px;
   min-width: 380px;
@@ -25,9 +26,7 @@ const Wrapper = styled.div`
   background-color: ${colors["MAIN_BG"]};
 `;
 
-const TitleWrapper = styled.div`
-  margin: 20px 0;
-`;
+
 
 const Content = styled.div`
   text-align: center;
@@ -36,11 +35,12 @@ const Content = styled.div`
 `;
 
 const CardList = styled.div`
+  width :100%;
   display: grid;
   row-gap: 10px;
   column-gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   margin: 20px 0;
 `;
 
@@ -50,10 +50,14 @@ const KakaoLogo = styled(KakaoIcon)`
 `;
 
 const KakaoButton = styled.img`
-  position: absolute;
-  bottom: 42px;
   cursor: pointer;
 `;
+
+const Container =styled.div`
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+`
 
 interface CardProps {
   content: string;
@@ -125,16 +129,16 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <TitleWrapper>
-        <Title />
-      </TitleWrapper>
-      <CardList>
-        {cardDummy.map((props: CardProps, index) => (
-          <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
-        ))}
-      </CardList>
-      <Content>추억의 롤링페이퍼에서</Content>
-      <Content>추억을 만들고 간직하세요!</Content>
+      <Title />
+      <Container>
+        <CardList>
+          {cardDummy.map((props: CardProps, index) => (
+            <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
+          ))}
+        </CardList>
+        <Content>추억의 롤링페이퍼에서</Content>
+        <Content>추억을 만들고 간직하세요!</Content>
+    </Container>
       <KakaoButton src={`./imgs/kakao-login.png`} onClick={kakaoLogin} />
     </Wrapper>
   );
