@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../theme/color";
 import Card from "./components/Card";
@@ -76,7 +76,7 @@ const RollingPaper = () => {
       setCardIndex(cardIndex+1);
     }
   }
-
+ const navigate = useNavigate();
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
       <Header infos={dummy} />
@@ -87,7 +87,7 @@ const RollingPaper = () => {
         ))}
       </Content>
       <ButtonContainer>
-        <MakeButton />
+        <MakeButton handleClick={() => navigate('/')} />
       </ButtonContainer>
       </>
       {showDetail && <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail}/>}

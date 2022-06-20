@@ -6,7 +6,7 @@ const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("src/assets/imgs/logo.png");
+  background-image: url("./imgs/logo.png");
   background-position: center center;
   background-size: contain;
   width: 300px;

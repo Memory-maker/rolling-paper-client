@@ -1,9 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const MakeButton = () => {
+interface ButtonProps{
+  handleClick: ()=>void;}
+const MakeButton = ({handleClick}:ButtonProps) => {
   return (
     <div
+    onClick={handleClick}
       dangerouslySetInnerHTML={{
         __html: `<svg width="263" height="44" viewBox="0 0 263 44" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect x="0.5" y="0.5" width="262" height="43" rx="19.5" fill="#F05A39"/>

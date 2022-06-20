@@ -9,6 +9,7 @@ import { ReactComponent as KakaoIcon } from "/src/assets/svgs/kakao.svg";
 import { login_API, singup_API } from "../../api/user";
 import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import getCookie from "../../utils/cookie";
+import { colors } from "../../theme/color";
 
 const Wrapper = styled.div`
   position: relative;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding: 42px;
-  background-color: ${({ theme }) => theme.colors.MAIN_BG};
+  background-color: ${colors["MAIN_BG"]};
 `;
 
 const TitleWrapper = styled.div`
@@ -133,7 +134,7 @@ const Home = () => {
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>
       <Content>추억을 만들고 간직하세요!</Content>
-      <KakaoButton src={"src/assets/imgs/kakao-login.png"} />
+      <KakaoButton src={`./imgs/kakao-login.png`} />
     </Wrapper>
   );
 };
