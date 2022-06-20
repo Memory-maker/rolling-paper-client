@@ -1,13 +1,18 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
 import Modal from '../Modal';
+
+import styled from 'styled-components';
+
+interface Props {
+  setIsModalOpen: (state: boolean) => void;
+}
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100%;
-  height: 300px;
+  max-width: 100%;
+  max-height: 300px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -101,7 +106,7 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-function MakeRoll() {
+function MakeRoll({ setIsModalOpen }: Props) {
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
     navigate('/example');
@@ -112,7 +117,7 @@ function MakeRoll() {
   // const [paperTheme, setPaperTheme] = useState(0);
 
   return (
-    <Modal>
+    <Modal setIsModalOpen={setIsModalOpen}>
       <Wrapper>
         <Title>롤링페이퍼를 만들어볼까요?</Title>
 
