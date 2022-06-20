@@ -1,16 +1,14 @@
-import React from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Logo from "../../components/Logo";
 import Title from "../../components/Title";
-import { colors } from "../../theme/color";
 import Card from "./components/Card";
 import cardDummy from "./utils/cardDummy";
 import { ReactComponent as KakaoIcon } from "/src/assets/svgs/kakao.svg";
-interface CardProps {
-  content: string;
-  background: string;
-  rotate: string;
-}
+import { login_API, singup_API } from "../../api/user";
+import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
+import getCookie from "../../utils/cookie";
 
 const Wrapper = styled.div`
   position: relative;
@@ -23,7 +21,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   padding: 42px;
-  background-color: ${colors.MAIN_BG};
+  background-color: ${({ theme }) => theme.colors.MAIN_BG};
 `;
 
 const TitleWrapper = styled.div`
@@ -39,7 +37,7 @@ const Content = styled.div`
 const CardList = styled.div`
   display: grid;
   row-gap: 10px;
-	column-gap: 20px;
+  column-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   margin: 20px 0;
@@ -50,19 +48,85 @@ const KakaoLogo = styled(KakaoIcon)`
   left: 16px;
 `;
 
-const KakaoButton = styled.div`
+const KakaoButton = styled.button`
   position: absolute;
   bottom: 42px;
   width: 328px;
   height: 53px;
-  background-color: ${colors.KAKAO_COLOR};
+  background-color: ${({ theme }) => theme.colors.KAKAO_COLOR};
   font-family: Noto Sans KR;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+interface CardProps {
+  content: string;
+  background: string;
+  rotate: string;
+}
+
 const Home = () => {
+  const navigate = useNavigate();
+  const kakaoJsKey = import.meta.env.VITE_JS_KEY;
+  const [token, setToken] = useState("");
+  const [data, setData] = useState<kakaoProfile | null>(null);
+
+  const kakaoLogin = () => {
+    window.Kakao.Auth.login({
+      success: function (serverResponse: kakaoToken) {
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success: function ({ kakao_account, id }: kakaoServerRes) {
+            const userData = {
+              id,
+              profile: kakao_account.profile,
+            };
+            setData(userData);
+          },
+          fail: function (error: unknown) {
+            console.log(error);
+          },
+        });
+      },
+      fail: function (error: unknown) {
+        console.log(error);
+      },
+    });
+  };
+
+  const login = async () => {
+    // 1. 쿠키에서 세션 아이디 꺼낸 뒤, 로그인 api 요청
+    // 2. 서버에서 세션 id 검증 후, 만료안되었고 유요한 세션이면 200, 아니면 에러
+
+    //const sessionId = document.cookie
+    //쿠키 키값을 현재 토마토에게서 모르는 상태 => 예시: 토마토
+    const sessionId = getCookie("tomato");
+    const result = await login_API(sessionId);
+    if (result?.status !== 200) {
+      //로그인 api결과가 200아닌 경우 즉, 회원가입시켜야 함! 그후 페이지 이동등 추후 처리!
+      kakaoLogin();
+      await singup_API(data);
+      //페이지 이동 등 사후 처리..!
+    } else {
+      //200인 경우 = 세션 유효, 이미 회원가입한 저장된 회원 즉! 로그인
+      // 페이지 이동등 , 뭔가 액션??
+    }
+  };
+
+  const onHandleClick = () => {
+    login();
+  };
+
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      // JavaScript key를 인자로 주고 SDK 초기화
+      window.Kakao.init(kakaoJsKey);
+      // SDK 초기화 여부를 확인하자.
+      console.log(window.Kakao.isInitialized());
+    }
+  }, [kakaoJsKey]);
+
   return (
     <Wrapper>
       <Logo />
@@ -76,7 +140,7 @@ const Home = () => {
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>
       <Content>추억을 만들고 간직하세요!</Content>
-      <KakaoButton>
+      <KakaoButton type="button" onClick={onHandleClick}>
         <KakaoLogo />
         <div>카카오 계정으로 시작하기</div>
       </KakaoButton>
