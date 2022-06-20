@@ -6,6 +6,10 @@ import ShareRoll from "./ShareRoll";
 
 import styled from "styled-components";
 
+interface Props {
+  setIsModalOpen: (state: boolean) => void;
+}
+
 const ModalWrapper = styled.div`
   display: flex;
   position: absolute;
@@ -17,22 +21,24 @@ const ModalWrapper = styled.div`
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
-  position: absolute;
+`;
+
+const ModalBackWrapper = styled.div`
+  width: 100%;
 `;
 
 const ModalBody = styled.div`
-  /* flex-direction: column; */
   position: absolute;
   width: 303px;
-  /* height: 583px; */
   padding: 32px 24px;
   margin-top: 44px;
   background-color: #ffffff;
   border-radius: 20px;
   border: 1px solid #f05a39;
+  z-index: 100;
 `;
 
-function Modal() {
+function Modal({ setIsModalOpen }: Props) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
   const modalRef = useRef<HTMLDivElement>(null);
   const [makeRollVisible, setMakeRollVisible] = useState(true);
@@ -59,12 +65,12 @@ function Modal() {
   };
 
   const handleModalOutsideClick = () => {
-    // setIsModalOpen(false);
+    setIsModalOpen(false);
   };
 
   return ReactDOM.createPortal(
-    <ModalWrapper ref={modalRef} onClick={handleModalOutsideClick}>
-      {/* <ModalWrapper ref={modalRef}> */}
+    <ModalWrapper>
+      <ModalBackWrapper ref={modalRef} onClick={handleModalOutsideClick} />
       <ModalBody>
         {makeRollVisible && <MakeRoll handleClickButton={handleClickButton} />}
         {shareRollVisible && <ShareRoll />}
