@@ -66,60 +66,60 @@ const Home = () => {
   const [token, setToken] = useState("");
   const [data, setData] = useState<kakaoProfile | null>(null);
 
-  const kakaoLogin = () => {
-    window.Kakao.Auth.login({
-      success: function (serverResponse: kakaoToken) {
-        window.Kakao.API.request({
-          url: "/v2/user/me",
-          success: function ({ kakao_account, id }: kakaoServerRes) {
-            const userData = {
-              id,
-              profile: kakao_account.profile,
-            };
-            setData(userData);
-          },
-          fail: function (error: unknown) {
-            console.log(error);
-          },
-        });
-      },
-      fail: function (error: unknown) {
-        console.log(error);
-      },
-    });
-  };
+  // const kakaoLogin = () => {
+  //   window.Kakao.Auth.login({
+  //     success: function (serverResponse: kakaoToken) {
+  //       window.Kakao.API.request({
+  //         url: "/v2/user/me",
+  //         success: function ({ kakao_account, id }: kakaoServerRes) {
+  //           const userData = {
+  //             id,
+  //             profile: kakao_account.profile,
+  //           };
+  //           setData(userData);
+  //         },
+  //         fail: function (error: unknown) {
+  //           console.log(error);
+  //         },
+  //       });
+  //     },
+  //     fail: function (error: unknown) {
+  //       console.log(error);
+  //     },
+  //   });
+  // };
 
-  const login = async () => {
-    // 1. 쿠키에서 세션 아이디 꺼낸 뒤, 로그인 api 요청
-    // 2. 서버에서 세션 id 검증 후, 만료안되었고 유요한 세션이면 200, 아니면 에러
+  // const login = async () => {
+  //   // 1. 쿠키에서 세션 아이디 꺼낸 뒤, 로그인 api 요청
+  //   // 2. 서버에서 세션 id 검증 후, 만료안되었고 유요한 세션이면 200, 아니면 에러
 
-    //const sessionId = document.cookie
-    //쿠키 키값을 현재 토마토에게서 모르는 상태 => 예시: 토마토
-    const sessionId = getCookie("tomato");
-    const result = await login_API(sessionId);
-    if (result?.status !== 200) {
-      //로그인 api결과가 200아닌 경우 즉, 회원가입시켜야 함! 그후 페이지 이동등 추후 처리!
-      kakaoLogin();
-      await singup_API(data);
-      //페이지 이동 등 사후 처리..!
-    } else {
-      //200인 경우 = 세션 유효, 이미 회원가입한 저장된 회원 즉! 로그인
-      // 페이지 이동등 , 뭔가 액션??
-    }
-  };
+  //   //const sessionId = document.cookie
+  //   //쿠키 키값을 현재 토마토에게서 모르는 상태 => 예시: 토마토
+  //   const sessionId = getCookie("tomato");
+  //   const result = await login_API(sessionId);
+  //   if (result?.status !== 200) {
+  //     //로그인 api결과가 200아닌 경우 즉, 회원가입시켜야 함! 그후 페이지 이동등 추후 처리!
+  //     kakaoLogin();
+  //     await singup_API(data);
+  //     //페이지 이동 등 사후 처리..!
+  //   } else {
+  //     //200인 경우 = 세션 유효, 이미 회원가입한 저장된 회원 즉! 로그인
+  //     // 페이지 이동등 , 뭔가 액션??
+  //   }
+  // };
 
-  const onHandleClick = () => {
-    login();
-  };
+  // const onHandleClick = () => {
+  //   login();
+  // };
 
-  useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      // JavaScript key를 인자로 주고 SDK 초기화
-      window.Kakao.init(kakaoJsKey);
-      // SDK 초기화 여부를 확인하자.
-      console.log(window.Kakao.isInitialized());
-    }
-  }, [kakaoJsKey]);
+  // useEffect(() => {
+  //   if (!window.Kakao.isInitialized()) {
+  //     // JavaScript key를 인자로 주고 SDK 초기화
+  //     window.Kakao.init(kakaoJsKey);
+  //     // SDK 초기화 여부를 확인하자.
+  //     console.log(window.Kakao.isInitialized());
+  //   }
+  // }, [kakaoJsKey]);
 
   return (
     <Wrapper>
