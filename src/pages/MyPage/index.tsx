@@ -1,7 +1,9 @@
+import { useCallback, useState } from "react";
+import Main from "./Main";
+import Header from "./Header";
 import AddButton from "./components/AddButton";
 import styled from "styled-components";
-import Header from "./Header";
-import Main from "./Main";
+import Modal from "../Modal";
 
 function MyPage() {
   const USER_NAME = "레몬은 아이셔";
@@ -15,12 +17,19 @@ function MyPage() {
     );
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickButton = useCallback(() => {
+    setIsModalOpen((prevState) => !prevState);
+  }, [isModalOpen]);
+
   return (
     <MyPageLayout>
       <HeaderWrapper>
         <Header>{renderHeaderInfo()}</Header>
         <Main />
-        <AddButton />
+        <AddButton handleClickButton={handleClickButton} />
+        {isModalOpen && <Modal />}
       </HeaderWrapper>
     </MyPageLayout>
   );

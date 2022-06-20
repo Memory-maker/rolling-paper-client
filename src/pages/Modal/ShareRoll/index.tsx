@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Modal from "../Modal";
+import Modal from "..";
 
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
@@ -87,32 +87,31 @@ const Span = styled.span`
   padding: 0 15px;
 `;
 
-function ShareRoll({ setIsModalOpen }: Props) {
+function ShareRoll() {
+  const [visible, setVisible] = useState(true);
   const handleClickButton = useCallback(() => {
-    // 공유하기 버튼
+    setVisible(false);
   }, []);
 
   return (
-    <Modal setIsModalOpen={setIsModalOpen}>
-      <Wrapper>
-        <Title>롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?</Title>
+    <Wrapper>
+      <Title>롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?</Title>
 
-        <form>
-          <Label>롤링페이퍼 링크</Label>
-          <InputWrapper>
-            <InputField type="text" name="paperUrl" />
-            <IconWrapper>
-              <ClipboardIcon />
-            </IconWrapper>
-          </InputWrapper>
+      <form>
+        <Label>롤링페이퍼 링크</Label>
+        <InputWrapper>
+          <InputField type="text" name="paperUrl" value="https://rolling-paper-client-blue.vercel.app/" />
+          <IconWrapper>
+            <ClipboardIcon />
+          </IconWrapper>
+        </InputWrapper>
 
-          <Button type="submit" onClick={handleClickButton}>
-            <Span>공유하기</Span>
-            <ShareIcon />
-          </Button>
-        </form>
-      </Wrapper>
-    </Modal>
+        <Button type="button" onClick={handleClickButton}>
+          <Span>닫기</Span>
+          {/* <ShareIcon /> */}
+        </Button>
+      </form>
+    </Wrapper>
   );
 }
 

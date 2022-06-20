@@ -1,16 +1,13 @@
-import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airplane.svg";
+import { useCallback, useState, MouseEvent } from "react";
 
+import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airplane.svg";
 import styled from "styled-components";
 
-import { useCallback, useState } from "react";
+interface Props {
+  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
+}
 
-function AddButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleClickButton = useCallback(() => {
-    setIsModalOpen((prevState) => !prevState);
-  }, [isModalOpen]);
-
+function AddButton({ handleClickButton }: Props) {
   return (
     <StyledButton type="button" onClick={handleClickButton}>
       {<StyledIcon />}
