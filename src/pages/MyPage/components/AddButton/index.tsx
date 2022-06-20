@@ -1,13 +1,16 @@
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airplane.svg";
 
+import styled from "styled-components";
+
+import { useCallback, useState } from "react";
+
 function AddButton() {
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleClickButton = useCallback(() => {
-    navigate("/");
-  }, []);
+    setIsModalOpen((prevState) => !prevState);
+  }, [isModalOpen]);
+
   return (
     <StyledButton type="button" onClick={handleClickButton}>
       {<StyledIcon />}
