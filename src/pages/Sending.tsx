@@ -127,8 +127,8 @@ const Sending = (props: ShareProps) => {
           <SendStatusMessage>{senindgMessage}</SendStatusMessage>
         </Contents>
       <ButtonContainer>
-        {shareStatus ? <ShareButton>친구들한테 공유해볼까?</ShareButton> : <ShareButton>다시적기</ShareButton>}
-        {shareStatus ? <ShareButton>나도 만들어볼까?</ShareButton> : <ShareButton>전송 취소하기</ShareButton>}
+        {shareStatus ? <ShareButton onClick={()=>setShow(true)}>친구들한테 공유해볼까?</ShareButton> : <ShareButton>다시적기</ShareButton>}
+        {shareStatus ? <ShareButton onClick={()=>navigate("/")}>나도 만들어볼까?</ShareButton> : <ShareButton>전송 취소하기</ShareButton>}
       </ButtonContainer>
         {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
       </Main>
