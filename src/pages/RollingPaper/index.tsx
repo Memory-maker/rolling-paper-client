@@ -87,7 +87,7 @@ const RollingPaper = () => {
         ))}
       </Content>
       <ButtonContainer>
-        <MakeButton handleClick={() => navigate('/')} />
+        <MakeButton handleClick={() => navigate('/editor')} />
       </ButtonContainer>
       </>
       {showDetail && <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail}/>}

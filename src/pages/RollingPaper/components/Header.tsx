@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../theme/color";
+import Modal from "../../Modal";
 import { RollingPaper } from "../utils/RollingPaper.type";
 import ShareButton from "./ShareButton";
 import StickerButton from "./StickerButton";
@@ -21,8 +22,8 @@ const Header = ({ infos }: HeaderProps) => {
         <span>"{infos.title}"</span>
       </Title>
       <Buttons>
-        <ShareButton />
-        {/* <StickerButton show={show} setShow={setShow} /> */}
+        <ShareButton setShow={setShow}/>
+       {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
       </Buttons>
     </Container>
   );
@@ -63,3 +64,9 @@ const Buttons = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+
+const ModalText= styled.div`
+  font-size: 48px;
+  text-align: center;
+
+`
