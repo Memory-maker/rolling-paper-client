@@ -50,36 +50,26 @@ const KakaoLogo = styled(KakaoIcon)`
   left: 16px;
 `;
 
-const KakaoButton = styled.div`
+const KakaoButton = styled.img`
   position: absolute;
   bottom: 42px;
-  width: 328px;
-  height: 53px;
-  background-color: ${colors.KAKAO_COLOR};
-  font-family: Noto Sans KR;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  cursor: pointer;
 `;
 
 const Home = () => {
   return (
     <Wrapper>
-      <Logo />
       <TitleWrapper>
         <Title />
       </TitleWrapper>
       <CardList>
-        {cardDummy.map((props: CardProps) => (
-          <Card content={props.content} background={props.background} rotate={props.rotate} />
+        {cardDummy.map((props: CardProps, index) => (
+          <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
         ))}
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>
       <Content>추억을 만들고 간직하세요!</Content>
-      <KakaoButton>
-        <KakaoLogo />
-        <div>카카오 계정으로 시작하기</div>
-      </KakaoButton>
+      <KakaoButton src={"src/assets/imgs/kakao-login.png"}/>
     </Wrapper>
   );
 };
