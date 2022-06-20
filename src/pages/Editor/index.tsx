@@ -6,6 +6,7 @@ import FontFamilyOption from "./components/FontFamilyOption";
 import FontColorOption from "./components/FontColorOption";
 import BackgroundColorOption from "./components/BackgroundColorOption";
 import ShareButton from "../../components/ShareButton";
+import { useNavigate } from "react-router-dom";
 
 const EditorWrapper = styled.div`
   position: relative;
@@ -27,6 +28,7 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   margin-bottom: 18px;
+  cursor: pointer;
 `;
 
 const MakerWrapper = styled.div`
@@ -104,6 +106,8 @@ const FONT_FAMILY_OPTIONS = Object.freeze([
 const FONT_COLOR_OPTIONS = Object.freeze(["#000000", "#ff0000", "#0085ff", "#7dff00", "#ad00ff", "#ffd600"]);
 
 function Editor() {
+  const navigate = useNavigate();
+
   const cardRef = useRef<HTMLTextAreaElement>(null);
   const [editorType, setEditorType] = useState("background");
 
@@ -138,7 +142,7 @@ function Editor() {
     <EditorWrapper>
       <ButtonWrapper>
         <ShareButton />
-        <Button>완료</Button>
+        <Button onClick={() => navigate("/sending")}>완료</Button>
       </ButtonWrapper>
       <Card
         backgroundColor={backgroundColor}
