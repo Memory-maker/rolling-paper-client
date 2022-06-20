@@ -65,13 +65,13 @@ const KakaoButton = styled.div`
 const Home = () => {
   return (
     <Wrapper>
-      <Logo />
+      {/* <Logo /> */}
       <TitleWrapper>
         <Title />
       </TitleWrapper>
       <CardList>
-        {cardDummy.map((props: CardProps) => (
-          <Card content={props.content} background={props.background} rotate={props.rotate} />
+        {cardDummy.map((props: CardProps, index) => (
+          <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
         ))}
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>

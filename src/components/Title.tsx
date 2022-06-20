@@ -2,10 +2,15 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "../theme/color";
 
-const Wrapper = styled.div`
+const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("src/assets/imgs/logo.png");
+  background-position: center center;
+  background-size: contain;
+  width: 300px;
+  height: 220px;
 `;
 
 interface Content {
@@ -19,12 +24,10 @@ const Content = styled.div<Content>`
   color: ${colors.POINT_COLOR};
 `;
 
+
 const Title = () => {
   return (
-    <Wrapper>
-      <Content>추억의</Content>
-      <Content>롤링페이퍼</Content>
-    </Wrapper>
+    <Logo/>
   )
 }
 
