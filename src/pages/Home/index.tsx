@@ -114,14 +114,14 @@ const Home = () => {
   //   login();
   // };
 
-  // useEffect(() => {
-  //   if (!window.Kakao.isInitialized()) {
-  //     // JavaScript key를 인자로 주고 SDK 초기화
-  //     window.Kakao.init(kakaoJsKey);
-  //     // SDK 초기화 여부를 확인하자.
-  //     console.log(window.Kakao.isInitialized());
-  //   }
-  // }, [kakaoJsKey]);
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      // JavaScript key를 인자로 주고 SDK 초기화
+      window.Kakao.init(kakaoJsKey);
+      // SDK 초기화 여부를 확인하자.
+      console.log(window.Kakao.isInitialized());
+    }
+  }, [kakaoJsKey]);
 
   return (
     <Wrapper>
