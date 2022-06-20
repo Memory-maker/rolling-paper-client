@@ -20,6 +20,7 @@ const StyledHeader = styled.header`
   font-size: 32px;
   font-family: "LeeSeoyun";
   font-weight: 400;
+  user-select: none;
   mark {
     background: none;
     color: #ffba47;

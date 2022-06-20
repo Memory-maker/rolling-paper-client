@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { cardColor, colors } from '../../../theme/color';
+import React from "react";
+import styled from "styled-components";
+import { cardColor, colors } from "../../../theme/color";
 
 interface Card {
   content: string;
