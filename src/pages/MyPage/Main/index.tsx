@@ -1,9 +1,10 @@
-import styled from "styled-components";
 import { ReactComponent as ArrowDownIcon } from "/src/assets/svgs/arrow-down.svg";
-import { ReactComponent as BlindIcon } from "/src/assets/svgs/blind.svg";
 import { ReactComponent as LockIcon } from "/src/assets/svgs/lock.svg";
 
-import { useState } from "react";
+import styled from "styled-components";
+
+import DropDown from "../components/DropDown";
+import { useCallback, useState } from "react";
 
 const USER_DATA = [
   {
@@ -27,9 +28,9 @@ interface Props {
 function Main() {
   const [isToggle, setIsToggle] = useState(false);
 
-  const handleClickToggle = () => {
+  const handleClickToggle = useCallback(() => {
     setIsToggle((prevState) => !prevState);
-  };
+  }, []);
 
   return (
     <>
@@ -42,16 +43,16 @@ function Main() {
           <StytledMainItemTitle>
             <div>{`3학년 2반 친구들`}</div>
             <div>
-              <BlindIcon />
               <LockIcon />
             </div>
           </StytledMainItemTitle>
           <StyledMainItemDate>
-            {`2020.12.16`}
+            <div>{`2020.12.16`}</div>
             <ArrowDownIcon onClick={handleClickToggle} />
           </StyledMainItemDate>
         </StyledMainItems>
       </StyledMainContent>
+      {isToggle && <DropDown />}
     </>
   );
 }
@@ -68,6 +69,7 @@ const StyledMainTitle = styled.div`
   border-bottom: 2px solid #222;
   width: 100%;
   height: 50px;
+  user-select: none;
 `;
 
 const StyledMainContent = styled.div`
@@ -91,6 +93,7 @@ const StyledMainItems = styled.div`
   color: #fff;
   font-family: "LeeSeoYun";
   font-size: 16px;
+  user-select: none;
 `;
 
 const StytledMainItemTitle = styled.div`
@@ -106,6 +109,9 @@ const StytledMainItemTitle = styled.div`
 `;
 
 const StyledMainItemDate = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   font-weight: 400;
   width: 140px;
   height: 100%;
@@ -114,4 +120,8 @@ const StyledMainItemDate = styled.div`
   color: #222;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
+
+  svg {
+    cursor: pointer;
+  }
 `;
