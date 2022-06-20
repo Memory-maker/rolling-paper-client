@@ -17,6 +17,7 @@ const ShareButton = ({setShow}:ButtonProps) => {
     t.value = 'https://rolling-paper-client-blue.vercel.app/rollingpaper';
     t.select();
     document.execCommand('copy');
+    document.body.removeChild(t);
     setShow(true);
   }
   return (
