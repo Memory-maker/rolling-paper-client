@@ -114,14 +114,14 @@ const Home = () => {
   //   login();
   // };
 
-  // useEffect(() => {
-  //   if (!window.Kakao.isInitialized()) {
-  //     // JavaScript key를 인자로 주고 SDK 초기화
-  //     window.Kakao.init(kakaoJsKey);
-  //     // SDK 초기화 여부를 확인하자.
-  //     console.log(window.Kakao.isInitialized());
-  //   }
-  // }, [kakaoJsKey]);
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      // JavaScript key를 인자로 주고 SDK 초기화
+      window.Kakao.init(kakaoJsKey);
+      // SDK 초기화 여부를 확인하자.
+      console.log(window.Kakao.isInitialized());
+    }
+  }, [kakaoJsKey]);
 
   return (
     <Wrapper>
@@ -135,7 +135,7 @@ const Home = () => {
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>
       <Content>추억을 만들고 간직하세요!</Content>
-      <KakaoButton src={`./imgs/kakao-login.png`} />
+      <KakaoButton src={`./imgs/kakao-login.png`} onClick={kakaoLogin} />
     </Wrapper>
   );
 };
