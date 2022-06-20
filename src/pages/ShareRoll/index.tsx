@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "../Modal";
@@ -88,9 +88,8 @@ const Span = styled.span`
 `;
 
 function ShareRoll({ setIsModalOpen }: Props) {
-  const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate("/example");
+    // 공유하기 버튼
   }, []);
 
   return (
@@ -101,7 +100,7 @@ function ShareRoll({ setIsModalOpen }: Props) {
         <form>
           <Label>롤링페이퍼 링크</Label>
           <InputWrapper>
-            <InputField type="text" name="url" />
+            <InputField type="text" name="paperUrl" />
             <IconWrapper>
               <ClipboardIcon />
             </IconWrapper>

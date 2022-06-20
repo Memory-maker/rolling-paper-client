@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback, ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "../Modal";
@@ -107,14 +107,40 @@ const Button = styled.button`
 `;
 
 function MakeRoll({ setIsModalOpen }: Props) {
-  const navigate = useNavigate();
-  const handleClickButton = useCallback(() => {
-    navigate("/example");
-  }, []);
+  const [title, setTitle] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [paperTheme, setPaperTheme] = useState("");
+  const [paperUrl, setPaperUrl] = useState("");
 
-  // const [title, setTitle] = useState('');
-  // const [dueDate, setDueDate] = useState('');
-  // const [paperTheme, setPaperTheme] = useState(0);
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.currentTarget.value);
+  };
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDueDate(e.currentTarget.value);
+  };
+
+  const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPaperTheme(e.currentTarget.value);
+  };
+
+  const handleClickButton = () => {
+    fetch("백엔드쪽 서버 url", {
+      method: "post",
+      body: JSON.stringify({
+        title: title,
+        dueDate: dueDate,
+        paperTheme: paperTheme,
+        batch: 1,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          setPaperUrl(`https://rolling-paper-client-peach.vercel.app/rollingPaper/${res.json()}`);
+        }
+      });
+  };
 
   return (
     <Modal setIsModalOpen={setIsModalOpen}>
@@ -123,27 +149,34 @@ function MakeRoll({ setIsModalOpen }: Props) {
 
         <form>
           <Label>롤링페이퍼 이름을 적어주세요</Label>
-          <InputField type="text" name="title" required />
+          <InputField type="text" name="title" onChange={handleTitleChange} />
 
           <Label>언제 열어보시겠어요?</Label>
-          <InputField type="date" name="dueDate" required />
+          <InputField type="date" name="dueDate" onChange={handleDateChange} />
 
           <Label>테마를 선택해주세요!</Label>
           <RadioWrapper>
             <RadioLabel htmlFor="light">
-              <RadioInputField type="radio" name="paperTheme" id="light" value="light" defaultChecked />
+              <RadioInputField
+                type="radio"
+                name="paperTheme"
+                id="light"
+                value="light"
+                onChange={handleThemeChange}
+                defaultChecked
+              />
               <span>라이트 테마</span>
               <RadioColor color="#FFF8EB" />
             </RadioLabel>
 
             <RadioLabel htmlFor="dark">
-              <RadioInputField type="radio" name="paperTheme" id="dark" value="dark" />
+              <RadioInputField type="radio" name="paperTheme" id="dark" value="dark" onChange={handleThemeChange} />
               <span>다크 테마</span>
               <RadioColor color="#736D62" />
             </RadioLabel>
           </RadioWrapper>
 
-          <Button type="submit" onClick={handleClickButton}>
+          <Button type="button" onClick={handleClickButton}>
             완료
           </Button>
         </form>
