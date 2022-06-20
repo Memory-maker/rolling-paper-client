@@ -1,43 +1,43 @@
 export interface kakaoToken {
-  access_token: String;
-  expires_in: Number;
-  id_token: String;
-  refresh_token: String;
-  refresh_token_expires_in: Number;
-  scope: String;
-  token_type: String;
+  access_token: string;
+  expires_in: number;
+  id_token: string;
+  refresh_token: string;
+  refresh_token_expires_in: number;
+  scope: string;
+  token_type: string;
 }
 
 export interface kakaoServerRes {
-  id: Number;
+  id: number;
   kakao_account: {
-    email: String;
-    email_needs_agreement: Boolean;
-    has_email: Boolean;
-    is_email_valid: Boolean;
-    is_email_verified: Boolean;
+    email: string;
+    email_needs_agreement: boolean;
+    has_email: boolean;
+    is_email_valid: boolean;
+    is_email_verified: boolean;
     profile: {
-      nickname: String;
-      thumbnail_image_url: String;
-      profile_image_url: String;
-      is_default_image: Boolean;
+      nickname: string;
+      thumbnail_image_url: string;
+      profile_image_url: string;
+      is_default_image: boolean;
     };
-    profile_image_needs_agreement: Boolean;
-    profile_nickname_needs_agreement: Boolean;
+    profile_image_needs_agreement: boolean;
+    profile_nickname_needs_agreement: boolean;
   };
   properties: {
-    nickname: String;
-    profile_image: String;
-    thumbnail_image: String;
+    nickname: string;
+    profile_image: string;
+    thumbnail_image: string;
   };
 }
 
 export interface kakaoProfile {
-  id: Number;
+  id: number;
   profile: {
-    nickname: String;
-    thumbnail_image_url: String;
-    profile_image_url: String;
-    is_default_image: Boolean;
+    nickname: string;
+    thumbnail_image_url: string;
+    profile_image_url: string;
+    is_default_image: boolean;
   };
 }

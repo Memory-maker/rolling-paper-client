@@ -77,8 +77,8 @@ const ShareButton = styled.button`
 const ShareWrapper = styled.div``;
 
 interface ShareProps {
-  sending_status?: Boolean;
-  nickname?: String;
+  sending_status?: boolean;
+  nickname?: string;
 }
 
 const Sending = (props: ShareProps) => {

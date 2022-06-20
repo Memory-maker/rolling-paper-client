@@ -1,9 +1,9 @@
-import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Modal from '../Modal';
+import Modal from "../Modal";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface Props {
   setIsModalOpen: (state: boolean) => void;
@@ -109,7 +109,7 @@ const Button = styled.button`
 function MakeRoll({ setIsModalOpen }: Props) {
   const navigate = useNavigate();
   const handleClickButton = useCallback(() => {
-    navigate('/example');
+    navigate("/example");
   }, []);
 
   // const [title, setTitle] = useState('');

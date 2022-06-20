@@ -1,6 +1,6 @@
 // Given a cookie key `name`, returns the value of
 // the cookie or `null`, if the key is not found.
-export default function getCookie(name: string): string {
+export default function getCookie(name: string): any {
   const nameLenPlus = name.length + 1;
   return (
     document.cookie

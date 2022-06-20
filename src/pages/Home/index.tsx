@@ -133,7 +133,7 @@ const Home = () => {
       </CardList>
       <Content>추억의 롤링페이퍼에서</Content>
       <Content>추억을 만들고 간직하세요!</Content>
-      <KakaoButton src={"src/assets/imgs/kakao-login.png"}/>
+      <KakaoButton src={"src/assets/imgs/kakao-login.png"} />
     </Wrapper>
   );
 };
