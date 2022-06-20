@@ -15,7 +15,7 @@ function Router() {
         <Route path="/editor" element={<Editor />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/rollingpaper/*" element={<RollingPaper />} />
-        <Route path="/Sending" element={<Sending />} />
+        <Route path="/sending" element={<Sending />} />
       </Routes>
     </BrowserRouter>
   );
