@@ -28,15 +28,19 @@ function MyPage() {
 
 const MyPageLayout = styled.section`
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin: 0 auto;
+  max-width: 680px;
+  min-width: 380px;
+  width: 100%;
   height: 100vh;
 `;
 
 const HeaderWrapper = styled.div`
   position: relative;
-  width: 375px;
-  height: 768px;
+  width: 100%;
+  height: 100%;
   background: #fff8eb;
 `;
 

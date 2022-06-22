@@ -1,5 +1,5 @@
-import { ChangeEvent } from 'react';
-import styled from 'styled-components';
+import { ChangeEvent } from "react";
+import styled from "styled-components";
 
 interface CardProps {
   value: string;
@@ -20,10 +20,11 @@ const Card = styled.textarea.attrs((props: CardProps, ref: HTMLTextAreaElement) 
   color: ${(props) => props.color};
   font-weight: 300;
   padding: 66px 30px;
+  width: 100%;
   border: none;
   outline: none;
   border-radius: 20px;
-
+  resize: none;
   font-size: 32px;
   height: 420px;
   line-height: 40.96px;

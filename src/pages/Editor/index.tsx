@@ -1,21 +1,25 @@
-import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import Button from './components/Button';
-import Card from './components/Card';
-import FontFamilyOption from './components/FontFamilyOption';
-import FontColorOption from './components/FontColorOption';
-import BackgroundColorOption from './components/BackgroundColorOption';
-import ShareButton from '../../components/ShareButton';
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import Button from "./components/Button";
+import Card from "./components/Card";
+import FontFamilyOption from "./components/FontFamilyOption";
+import FontColorOption from "./components/FontColorOption";
+import BackgroundColorOption from "./components/BackgroundColorOption";
+import ShareButton from "../../components/ShareButton";
+import { useNavigate } from "react-router-dom";
 
 const EditorWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  // justify-content: center;
-  margin: auto;
-  width: 375px;
-  height: 768px;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 680px;
+  min-width: 380px;
+  width: 100%;
+  height: 100vh;
   padding: 20px;
+  box-sizing:border-box;
   background-color: #fff8eb;
 `;
 
@@ -24,6 +28,7 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
   width: 100%;
   margin-bottom: 18px;
+  cursor: pointer;
 `;
 
 const MakerWrapper = styled.div`
@@ -79,7 +84,7 @@ const TextEditor = styled.div`
 const TextEditorTitle = styled.div`
   font-size: 24px;
   color: #ffffff;
-  margin-bottom: 12px; 
+  margin-bottom: 12px;
   margin-left: 8px;
 `;
 
@@ -89,15 +94,24 @@ const TextEditorSelector = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
 `;
 
-const BACK_GROUND_COLOR_OPTIOS = Object.freeze(['#ffd3d3', '#d3eaff', '#def9c4', '#efccff', '#fff5bf', '#ffffff']);
-const FONT_FAMILY_OPTIONS = Object.freeze(['LeeSeoyun', 'PyeongChangPeace-Light', 'NanumGothic', 'JejuMyeongjo', 'EarlyFontDiary', 'ParkYongJun']);
-const FONT_COLOR_OPTIONS = Object.freeze(['#000000', '#ff0000', '#0085ff', '#7dff00', '#ad00ff', '#ffd600']);
+const BACK_GROUND_COLOR_OPTIOS = Object.freeze(["#ffd3d3", "#d3eaff", "#def9c4", "#efccff", "#fff5bf", "#ffffff"]);
+const FONT_FAMILY_OPTIONS = Object.freeze([
+  "LeeSeoyun",
+  "PyeongChangPeace-Light",
+  "NanumGothic",
+  "JejuMyeongjo",
+  "EarlyFontDiary",
+  "ParkYongJun",
+]);
+const FONT_COLOR_OPTIONS = Object.freeze(["#000000", "#ff0000", "#0085ff", "#7dff00", "#ad00ff", "#ffd600"]);
 
 function Editor() {
-  const cardRef = useRef<HTMLTextAreaElement>(null);
-  const [editorType, setEditorType] = useState('background');
+  const navigate = useNavigate();
 
-  const [textValue, setTextValue] = useState('');
+  const cardRef = useRef<HTMLTextAreaElement>(null);
+  const [editorType, setEditorType] = useState("background");
+
+  const [textValue, setTextValue] = useState("");
   const [backgroundColor, setBackgroundColor] = useState(BACK_GROUND_COLOR_OPTIOS[0]);
   const [fontFamily, setFontFamily] = useState(FONT_FAMILY_OPTIONS[0]);
   const [fontColor, setFontColor] = useState(FONT_COLOR_OPTIONS[0]);
@@ -128,7 +142,7 @@ function Editor() {
     <EditorWrapper>
       <ButtonWrapper>
         <ShareButton />
-        <Button>완료</Button>
+        <Button onClick={() => navigate("/sending")}>완료</Button>
       </ButtonWrapper>
       <Card
         backgroundColor={backgroundColor}
@@ -141,18 +155,18 @@ function Editor() {
       <MakerWrapper>
         <EditorTypeSelector>
           <EditorTypeOption
-            color={editorType === 'background' ? '#ffd600' : 'inherit'}
-            onClick={() => setEditorType('background')}
+            color={editorType === "background" ? "#ffd600" : "inherit"}
+            onClick={() => setEditorType("background")}
           >
             배경
           </EditorTypeOption>
-          <EditorTypeOption color={editorType === 'text' ? '#ffd600' : 'inherit'} onClick={() => setEditorType('text')}>
+          <EditorTypeOption color={editorType === "text" ? "#ffd600" : "inherit"} onClick={() => setEditorType("text")}>
             텍스트
           </EditorTypeOption>
         </EditorTypeSelector>
 
         <EditorContent>
-          {editorType === 'background' && (
+          {editorType === "background" && (
             <BackgroundEditorWrapper>
               {BACK_GROUND_COLOR_OPTIOS.map((value) => (
                 <BackgroundColorOption
@@ -164,7 +178,7 @@ function Editor() {
               ))}
             </BackgroundEditorWrapper>
           )}
-          {editorType === 'text' && (
+          {editorType === "text" && (
             <TextEditorWrapper>
               <TextEditor>
                 <TextEditorTitle>글꼴</TextEditorTitle>

@@ -1,36 +1,35 @@
 {
   "env": {
-    "browser": true,
-    "es2021": true
+      "browser": true,
+      "es2021": true,
+      "node": true
   },
 
-  "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
-  "parser": "@typescript-eslint/parser",
+  "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+
   "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "ecmaVersion": 15,
-    "sourceType": "module"
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 12,
+      "sourceType": "module"
   },
 
-  "plugins": ["@typescript-eslint", "prettier", "react"],
+  "parser": "@typescript-eslint/parser",
+
+  "plugins": [
+      "@typescript-eslint",
+      "prettier"
+  ],
+
   "rules": {
-    "semi": "error",
-    "quotes": ["error", "double"],
-    "eol-last": "error",
-    "no-trailing-spaces": "error",
-    "indent": ["error", 2],
-    "keyword-spacing": 0,
-    "spaced-comment": ["error", "always"],
-    "no-unused-vars": "warn",
-    "no-multiple-empty-lines": [
-      "error",
-      {
-        "max": 1,
-        "maxEOF": 0,
-        "maxBOF": 0
-      }
-    ]
+      "prettier/prettier": [
+          "error", {
+              "endOfLine": "auto"
+          }
+      ]
   }
 }

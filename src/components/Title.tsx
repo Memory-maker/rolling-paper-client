@@ -2,15 +2,20 @@ import { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "../theme/color";
 
-const Wrapper = styled.div`
+const Logo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("./imgs/logo.png");
+  background-position: center center;
+  background-size: contain;
+  width: 300px;
+  height: 220px;
 `;
 
 interface Content {
   children: ReactNode;
-};
+}
 
 const Content = styled.div<Content>`
   z-index: 3;
@@ -20,12 +25,7 @@ const Content = styled.div<Content>`
 `;
 
 const Title = () => {
-  return (
-    <Wrapper>
-      <Content>추억의</Content>
-      <Content>롤링페이퍼</Content>
-    </Wrapper>
-  )
-}
+  return <Logo />;
+};
 
 export default Title;

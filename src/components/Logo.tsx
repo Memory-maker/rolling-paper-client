@@ -54,7 +54,7 @@ const Logo = () => {
         <ShortLine />
       </RightLines>
     </Wrapper>
-  )
+  );
 };
 
 export default Logo;

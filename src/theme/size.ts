@@ -1,11 +1,11 @@
 type Size = {
-  LOGO_LG: String;
-  TITLE: String;
-  TEXT_SM: String;
-  ITEM_TITLE: String;
-  ITEM_DATE: String;
-  MODAL_TITLE: String;
-  TEXT_MD: String;
+  LOGO_LG: string;
+  TITLE: string;
+  TEXT_SM: string;
+  ITEM_TITLE: string;
+  ITEM_DATE: string;
+  MODAL_TITLE: string;
+  TEXT_MD: string;
 };
 
 const size: Size = {

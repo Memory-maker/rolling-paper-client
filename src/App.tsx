@@ -11,7 +11,12 @@ interface State {
   setIsLock: Dispatch<SetStateAction<boolean>>;
 }
 
-export const CreateContext = createContext<State | null>(null);
+// declare global {
+//   interface Window {
+//     Kakao: any;
+//   }
+// }
+
 function App() {
   const [isToggle, setIsToggle] = useState(false);
   const [isLock, setIsLock] = useState(false);

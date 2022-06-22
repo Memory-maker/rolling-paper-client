@@ -1,32 +1,3 @@
-// type Colors = {
-//   MAIN_BG: string;
-//   POINT_COLOR: string;
-//   SUBPOINT_COLOR: string;
-//   POINT_ROW_COLOR: string;
-//   GRAY_MID_COLOR: string;
-//   GRAY_LOW_COLOR: string;
-//   DARK_BG_COLOR: string;
-
-//   KAKAO_COLOR: string;
-//   WHITE_COLOR: string;
-// };
-
-// export interface CardColor {
-//   CARD_RED: string;
-//   CARD_BLUE: string;
-//   CARD_GREEN: string;
-//   CARD_PURPLE: string;
-//   CARD_YELLOW: string;
-// }
-
-// export interface TextColor {
-//   TEXT_RED_COLOR: string;
-//   TEXT_BLUE_COLOR: string;
-//   TEXT_GREEN_COLOR: string;
-//   TEXT_PURPLE_COLOR: string;
-//   TEXT_YELLOW_COLOR: string;
-// }
-
 const cardColor = {
   CARD_RED: "#FFD3D3",
   CARD_BLUE: "#D3EAFF",
@@ -43,7 +14,7 @@ const textColor = {
   TEXT_GREEN_COLOR: "#7DFF00",
   TEXT_PURPLE_COLOR: "#AD00FF",
   TEXT_YELLOW_COLOR: "#FFD600",
-} as { [id: string]: string };
+};
 
 const colors = {
   MAIN_BG: "#FFF8EB",

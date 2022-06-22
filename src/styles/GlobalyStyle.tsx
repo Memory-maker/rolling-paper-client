@@ -28,12 +28,6 @@ const GlobalStyle = createGlobalStyle`
       font-style: normal;
   }
   @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
-  @font-face {
-    font-family: 'ghanachoco';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
 
   ${reset};
    * {
@@ -52,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     background: inherit;
     outline: none;
+    font-family: inherit;
+  }
+  input{
+    font-family: inherit;
   }
 `;
 export default GlobalStyle;
