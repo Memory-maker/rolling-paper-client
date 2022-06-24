@@ -1,15 +1,18 @@
-import React, { SetStateAction, useEffect, useState } from "react";
+import React, { SetStateAction, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Logo from "../../components/Logo";
 import Title from "../../components/Title";
 import Card from "./components/Card";
 import cardDummy from "./utils/cardDummy";
 import { ReactComponent as KakaoIcon } from "/src/assets/svgs/kakao.svg";
+
 import { login_API, singup_API } from "../../api/user";
 import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import getCookie from "../../utils/cookie";
 import { colors } from "../../theme/color";
+import gsap, { Back, Bounce } from "gsap";
+import Sticker, { StickerProps } from "../../components/Sticker";
 
 interface CardProps {
   content: string;
@@ -22,6 +25,10 @@ const Home = () => {
   const kakaoJsKey = import.meta.env.VITE_JS_KEY;
   const [token, setToken] = useState("");
   const [data, setData] = useState<kakaoProfile | null>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const logoQ = gsap.utils.selector(logoRef);
+  const cardQ = gsap.utils.selector(cardRef);
 
   const kakaoLogin = () => {
     window.Kakao.Auth.login({
@@ -79,23 +86,73 @@ const Home = () => {
     }
   }, [kakaoJsKey]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (logoRef.current) {
+      gsap
+        .timeline()
+        .set(logoQ("Line"), { opacity: 0 })
+        .set(logoQ(".text"), { opacity: 0 })
+        .fromTo(logoQ(".plane"), { x: -100, y: 100 }, { opacity: 1, x: 0, y: 0, duration: 1, ease: Back.easeOut })
+        .fromTo(
+          logoQ(".plane-left Line"),
+          {
+            scaleX: 0,
+            transformOrigin: "right",
+          },
+          { opacity: 1, scaleX: 1, duration: 0.5 },
+        )
+        .fromTo(
+          logoQ(".plane-right Line"),
+          {
+            scaleX: 0,
+            transformOrigin: "left",
+          },
+          { opacity: 1, scaleX: 1, delay: -0.5, duration: 0.5 },
+        )
+        .to(logoQ(".text"), { opacity: 1, scale: 1, delay: -0.8 });
+    }
+    if (cardRef.current) {
+      gsap
+        .timeline()
+        .set(cardQ(".title"), { opacity: 0 })
+        .set(cardQ(".card"), { opacity: 0 })
+        .set(cardQ(".sticker"), { opacity: 0 })
+        .set(cardQ(".login"), { opacity: 0 })
+        .to(cardQ(".card"), { opacity: 1, keyframes: { scale: [1.2, 0.9, 1] }, stagger: 0.08, delay: 1 })
+        .to(cardQ(".sticker"), { opacity: 1, keyframes: { scale: [1.4, 0.9, 1] }, stagger: 0.08, delay: -0.8 })
+        .to(cardQ(".title"), { opacity: 1, stagger: 0.5, delay: 0.3 })
+        .to(cardQ(".login"), { opacity: 1 });
+    }
+  }, []);
+
+  const stickers: StickerProps[] = [
+    { type: "garlands", rotate: 0, x: 68, y: -5 },
+    { type: "bear", rotate: -7, x: 11, y: 83 },
+    { type: "clova", rotate: 0, x: 160, y: 78 },
+    { type: "heart", rotate: -6, x: 271, y: 60 },
+    { type: "moon", rotate: 0, x: 97, y: 171 },
+    { type: "confetti", rotate: 0, x: 199, y: 165 },
+  ];
 
   return (
-    <Wrapper>
+    <Wrapper ref={cardRef}>
       <Container>
-        <TitleWrapper>
+        <TitleWrapper ref={logoRef}>
           <Title />
         </TitleWrapper>
+
         <CardList>
+          {stickers.map((sticker: StickerProps, index) => (
+            <Sticker key={index} {...sticker} />
+          ))}
           {cardDummy.map((props: CardProps, index) => (
             <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
           ))}
         </CardList>
-        <Content>추억의 롤링페이퍼에서</Content>
-        <Content>추억을 만들고 간직하세요!</Content>
+        <Content className="title">추억의 롤링페이퍼에서</Content>
+        <Content className="title">추억을 만들고 간직하세요!</Content>
       </Container>
-      <KakaoButton src={`./imgs/kakao-login.png`} onClick={kakaoLogin} />
+      <KakaoButton className="login" src={`./imgs/kakao-login.png`} onClick={kakaoLogin} />
     </Wrapper>
   );
 };
@@ -133,17 +190,16 @@ const Content = styled.div`
 `;
 
 const CardList = styled.div`
+  position: relative;
   display: grid;
   row-gap: 10px;
   column-gap: 20px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   margin: 20px 0;
-`;
-
-const KakaoLogo = styled(KakaoIcon)`
-  position: absolute;
-  left: 16px;
+  svg {
+    position: absolute;
+  }
 `;
 
 const KakaoButton = styled.img`
