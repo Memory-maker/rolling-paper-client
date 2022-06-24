@@ -35,7 +35,6 @@ const ModalBody = styled.div`
 
 function Modal({ children, setIsModalOpen }: Props) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
-  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleModalOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsModalOpen(false);

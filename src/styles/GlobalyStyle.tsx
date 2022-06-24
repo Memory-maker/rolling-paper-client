@@ -31,9 +31,18 @@ const GlobalStyle = createGlobalStyle`
    * {
     box-sizing: border-box;
   }
-  html, body {
+
+  html{
+    min-height: -webkit-fill-available;
+    
+  }
+  #root{
+    height: 100vh; 
+  } 
+  body {
     width:100%;
-    height:100%;
+    min-height: 100vh; 
+    min-height: -webkit-fill-available;
     font-family: 'LeeSeoyun'
   }
   a {

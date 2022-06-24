@@ -33,7 +33,6 @@ export default Detail;
 
 const Container = styled.div`
   position: absolute;
-  top: 100px;
   width: 100%;
   background: rgba(255, 255, 255, 0.8);
   height: 100%;

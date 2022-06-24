@@ -21,13 +21,13 @@ const RollingPaper = () => {
   };
   const onPrev = () => {
     if (0 === cardIndex) {
-      setCardIndex(dummy.cards.length);
+      setCardIndex(dummy.cards.length - 1);
     } else {
       setCardIndex(cardIndex - 1);
     }
   };
   const onNext = () => {
-    if (dummy.cards.length === cardIndex) {
+    if (dummy.cards.length - 1 === cardIndex) {
       setCardIndex(0);
     } else {
       setCardIndex(cardIndex + 1);

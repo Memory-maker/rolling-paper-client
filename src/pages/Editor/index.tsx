@@ -7,6 +7,7 @@ import FontColorOption from "./components/FontColorOption";
 import BackgroundColorOption from "./components/BackgroundColorOption";
 import ShareButton from "../../components/ShareButton";
 import { useNavigate } from "react-router-dom";
+import { colors } from "../../theme/color";
 
 const EditorWrapper = styled.div`
   position: relative;
@@ -21,6 +22,18 @@ const EditorWrapper = styled.div`
   padding: 20px;
   box-sizing: border-box;
   background-color: #fff8eb;
+  input:checked {
+    accent-color: ${colors.POINT_COLOR};
+  }
+  label {
+    display: flex;
+    align-items: center;
+  }
+  [type="checkbox"],
+  [type="radio"] {
+    height: 16px;
+    width: 16px;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -32,11 +45,12 @@ const ButtonWrapper = styled.div`
 `;
 
 const MakerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 300px;
 `;
 
 const EditorTypeSelector = styled.div`
@@ -46,39 +60,45 @@ const EditorTypeSelector = styled.div`
   width: 100%;
   height: 60px;
   padding: 0px 80px;
+  box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-size: 32px;
 `;
 
-const EditorTypeOption = styled.div.attrs((props) => ({
-  onClick: props.onClick,
-}))`
+const EditorTypeOption = styled.div`
   flex: 1;
   color: ${(props) => props.color};
   text-align: center;
 `;
 
 const EditorContent = styled.div`
+  display: flex;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  height: 240px;
 `;
 
 const BackgroundEditorWrapper = styled.div`
   display: grid;
-  height: 100%;
+  width: 100%;
   padding: 30px;
+  box-sizing: border-box;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  grid-row-gap: 12px;
 `;
 
 const TextEditorWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   height: 100%;
 `;
 
 const TextEditor = styled.div`
   height: 50%;
   padding: 20px 16px;
+  box-sizing: border-box;
 `;
 
 const TextEditorTitle = styled.div`
@@ -91,7 +111,8 @@ const TextEditorTitle = styled.div`
 const TextEditorSelector = styled.div`
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-row-gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
 `;
 
 const BACK_GROUND_COLOR_OPTIOS = Object.freeze(["#ffd3d3", "#d3eaff", "#def9c4", "#efccff", "#fff5bf", "#ffffff"]);
