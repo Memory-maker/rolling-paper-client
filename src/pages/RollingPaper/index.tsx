@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../theme/color";
+import Modal from "../Modal";
 import Card from "./components/Card";
 import Detail from "./components/Detail";
 import Header from "./components/Header";
@@ -11,6 +12,7 @@ import cardDummy from "./utils/cardDummy";
 const RollingPaper = () => {
   const rollingPaperId = useParams().rollingPaperId;
   const [showDetail, setShowDetail] = useState(false);
+  const [show, setShow] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
 
   const handleClick = (id: number) => {
@@ -34,8 +36,7 @@ const RollingPaper = () => {
   const navigate = useNavigate();
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
-      <Header infos={dummy} />
-
+      <Header infos={dummy} setShow={setShow} />
       <Content>
         {dummy.cards.map((card, index) => (
           <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
@@ -44,7 +45,11 @@ const RollingPaper = () => {
       <ButtonContainer>
         <MakeButton handleClick={() => navigate("/editor")} />
       </ButtonContainer>
-
+      {show && (
+        <Modal setIsModalOpen={setShow}>
+          <ModalText>복사 완료!</ModalText>
+        </Modal>
+      )}
       {showDetail && (
         <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail} />
       )}
@@ -86,6 +91,11 @@ const ButtonContainer = styled.div`
   justify-content: center;
   left: 0;
 `;
+const ModalText = styled.div`
+  font-size: 48px;
+  text-align: center;
+`;
+
 const dummy = {
   cards: [
     {

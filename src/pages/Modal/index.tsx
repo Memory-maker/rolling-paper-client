@@ -1,5 +1,5 @@
 import React, { ReactNode, useRef } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { createPortal } from "react-dom";
 
 import styled from "styled-components";
 
@@ -41,10 +41,11 @@ function Modal({ children, setIsModalOpen }: Props) {
     setIsModalOpen(false);
   };
 
-  return (
+  return ReactDOM.createPortal(
     <ModalWrapper onClick={handleModalOutsideClick}>
       <ModalBody>{children}</ModalBody>
-    </ModalWrapper>
+    </ModalWrapper>,
+    modalRoot,
   );
 }
 
