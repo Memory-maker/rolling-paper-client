@@ -96,6 +96,8 @@ const StyledMainItems = styled.div`
   font-family: "LeeSeoYun";
   font-size: 16px;
   user-select: none;
+  border-radius: 20px;
+  overflow: hidden;
 `;
 
 const StytledMainItemTitle = styled.div`
@@ -106,8 +108,6 @@ const StytledMainItemTitle = styled.div`
   height: 100%;
   padding: 0 12px;
   background: #f05a39cc;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
 `;
 
 const StyledMainItemDate = styled.div`
@@ -120,8 +120,6 @@ const StyledMainItemDate = styled.div`
   padding-left: 12px;
   background: #fff;
   color: #222;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
 
   svg {
     cursor: pointer;

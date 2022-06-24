@@ -8,10 +8,10 @@ import StickerButton from "./StickerButton";
 
 interface HeaderProps {
   infos: RollingPaper;
+  setShow: (show: boolean) => void;
 }
 
-const Header = ({ infos }: HeaderProps) => {
-  const [show, setShow] = useState(false);
+const Header = ({ infos, setShow }: HeaderProps) => {
   return (
     <Container>
       <Title isDark={false}>
@@ -22,8 +22,7 @@ const Header = ({ infos }: HeaderProps) => {
         <span>"{infos.title}"</span>
       </Title>
       <Buttons>
-        <ShareButton setShow={setShow}/>
-       {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
+        <ShareButton setShow={setShow} />
       </Buttons>
     </Container>
   );
@@ -64,9 +63,3 @@ const Buttons = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
-
-const ModalText= styled.div`
-  font-size: 48px;
-  text-align: center;
-
-`

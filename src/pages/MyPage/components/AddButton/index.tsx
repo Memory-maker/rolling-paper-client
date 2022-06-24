@@ -3,16 +3,14 @@ import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airp
 import styled from "styled-components";
 
 import { useCallback, useState } from "react";
+import { colors } from "../../../../theme/color";
 
-function AddButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleClickButton = useCallback(() => {
-    setIsModalOpen((prevState) => !prevState);
-  }, [isModalOpen]);
-
+interface ButtonProps {
+  setIsModalOpen: () => void;
+}
+function AddButton({ setIsModalOpen }: ButtonProps) {
   return (
-    <StyledButton type="button" onClick={handleClickButton}>
+    <StyledButton type="button" onClick={setIsModalOpen}>
       {<StyledIcon />}
     </StyledButton>
   );
@@ -24,27 +22,33 @@ const StyledButton = styled.button`
   position: absolute;
   bottom: 24px;
   right: 24px;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   background: #f05a39;
   color: #222;
   border-radius: 50%;
   border: 1px solid #f05a39;
   padding-left: 3px;
-  margin: auto;
   cursor: pointer;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   :focus {
     outline: none;
   }
 `;
 
 const StyledIcon = styled(PaperAirPlaneIcon)`
-  width: 32px;
-  height: 32px;
+  padding-bottom: 5px;
   path,
   line {
     stroke-width: 2px;
     stroke: #fff;
+  }
+  &:hover {
+    line,
+    path {
+      stroke: ${colors.SUB_POINT_COLOR};
+    }
   }
 `;
