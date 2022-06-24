@@ -5,15 +5,12 @@ import styled from "styled-components";
 import { useCallback, useState } from "react";
 import { colors } from "../../../../theme/color";
 
-function AddButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleClickButton = useCallback(() => {
-    setIsModalOpen((prevState) => !prevState);
-  }, [isModalOpen]);
-
+interface ButtonProps {
+  setIsModalOpen: () => void;
+}
+function AddButton({ setIsModalOpen }: ButtonProps) {
   return (
-    <StyledButton type="button" onClick={handleClickButton}>
+    <StyledButton type="button" onClick={setIsModalOpen}>
       {<StyledIcon />}
     </StyledButton>
   );
