@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-  @import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
   @font-face {
       font-family: 'PyeongChangPeace-Light';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Light.woff2') format('woff2');
@@ -27,7 +26,6 @@ const GlobalStyle = createGlobalStyle`
       font-weight: normal;
       font-style: normal;
   }
-  @import url(//fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
 
   ${reset};
    * {
@@ -40,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration:none;
-    color: #767676;
+  color: #767676;
   }
   button{
     border: none;
