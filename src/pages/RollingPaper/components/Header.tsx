@@ -22,9 +22,13 @@ const Header = ({ infos }: HeaderProps) => {
         <span>"{infos.title}"</span>
       </Title>
       <Buttons>
-        <ShareButton setShow={setShow}/>
-       {show &&<Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>}/>}
+        <ShareButton setShow={setShow} />
       </Buttons>
+      {show && (
+        <Modal setIsModalOpen={setShow}>
+          <ModalText>복사 완료!</ModalText>
+        </Modal>
+      )}
     </Container>
   );
 };
@@ -65,8 +69,7 @@ const Buttons = styled.div`
   justify-content: space-between;
 `;
 
-const ModalText= styled.div`
+const ModalText = styled.div`
   font-size: 48px;
   text-align: center;
-
-`
+`;

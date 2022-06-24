@@ -1,29 +1,33 @@
-import React, { MouseEvent } from 'react';
-import styled from 'styled-components';
-import { cardColor } from '../../../theme/color';
-import { fonts } from '../../../theme/font';
-import Card from '../utils/Card.type';
-import CloseButton from './CloseButton';
-import LeftButton from './LeftButton';
-import RightButton from './RightButton';
-interface DetailProps{
-  setShowDetail:(showDetail: boolean) => void;
+import React, { MouseEvent } from "react";
+import styled from "styled-components";
+import { cardColor } from "../../../theme/color";
+import { fonts } from "../../../theme/font";
+import Card from "../utils/Card.type";
+import CloseButton from "./CloseButton";
+import LeftButton from "./LeftButton";
+import RightButton from "./RightButton";
+interface DetailProps {
+  setShowDetail: (showDetail: boolean) => void;
   card: Card;
-  onPrev:()=>void;
-  onNext: ()=>void;
+  onPrev: () => void;
+  onNext: () => void;
 }
-const Detail = ({setShowDetail,onPrev, onNext, card}:DetailProps) => {
-  return <Container>
-    <CloseButtonContainer>
-        <CloseButton handleClick={()=>setShowDetail(false)}/>
-        </CloseButtonContainer>
-    <CardContainer  background={card?.background} font={card?.font}>
-      {card?.content}
-    </CardContainer>
-    <ButtonContainer><LeftButton handleClick={onPrev}/><span>from. 익명</span><RightButton handleClick={onNext}/></ButtonContainer>
-    
-  </Container>;
-
+const Detail = ({ setShowDetail, onPrev, onNext, card }: DetailProps) => {
+  return (
+    <Container>
+      <CloseButtonContainer>
+        <CloseButton handleClick={() => setShowDetail(false)} />
+      </CloseButtonContainer>
+      <CardContainer background={card?.background} font={card?.font}>
+        {card?.content}
+      </CardContainer>
+      <ButtonContainer>
+        <LeftButton handleClick={onPrev} />
+        <span>from. 익명</span>
+        <RightButton handleClick={onNext} />
+      </ButtonContainer>
+    </Container>
+  );
 };
 export default Detail;
 
@@ -40,7 +44,6 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 66px 16px 16px;
   margin-bottom: 66px;
-
 `;
 
 interface CardContainerProps {
@@ -65,17 +68,17 @@ const ButtonContainer = styled.div`
   font-size: 32px;
   width: 100%;
   justify-content: space-between;
-div{
-   cursor: pointer;
-}
-`
+  div {
+    cursor: pointer;
+  }
+`;
 
 const CloseButtonContainer = styled.div`
   display: flex;
-  width:100%;
+  width: 100%;
   align-items: center;
   justify-content: flex-end;
   padding: 0 24px 24px 48px;
   box-sizing: border-box;
   cursor: pointer;
- `
+`;

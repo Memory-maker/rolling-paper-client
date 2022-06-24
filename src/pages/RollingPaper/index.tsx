@@ -12,57 +12,7 @@ const RollingPaper = () => {
   const rollingPaperId = useParams().rollingPaperId;
   const [showDetail, setShowDetail] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
-  const dummy = {
-    cards: [
-      {
-        content: `안녕 레몬아너는 참 귀여워
-그동안 우리 일정관리
-해주고 MC해줘서
-정말 고마워
-앞으로 잘부탁하구
-우리 화이팅하자~!`,
-        background: "CARD_BLUE",
-        font: "default",
-      },
-      {
-        content: `안녕 레몬아너는 참 귀여워
-그동안 우리 일정관리
-해주고 MC해줘서
-정말 고마워
-앞으로 잘부탁하구
-우리 화이팅하자~!`,
-        background: "CARD_RED",
-        font: "default",
-      },
-      {
-        content: `안녕 레몬아너는 참 귀여워
-그동안 우리 일정관리
-해주고 MC해줘서
-정말 고마워
-앞으로 잘부탁하구
-우리 화이팅하자~!`,
-        background: "CARD_PURPLE",
-        font: "default",
-      },
-      {
-        content: `안녕 레몬아너는 참 귀여워
-그동안 우리 일정관리
-해주고 MC해줘서
-정말 고마워
-앞으로 잘부탁하구
-우리 화이팅하자~!`,
-        background: "CARD_GREEN",
-        font: "default",
-      },
-    ],
-    userName: "레몬은 귀여워",
-    paperId: 0,
-    title: "3학년 2반",
-    dueDate: new Date(),
-    theme: "light",
-    paperUrl: "",
-    opeanStatus: "Y",
-  };
+
   const handleClick = (id: number) => {
     setShowDetail(true);
     setCardIndex(id);
@@ -85,16 +35,16 @@ const RollingPaper = () => {
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
       <Header infos={dummy} />
-      <>
-        <Content>
-          {dummy.cards.map((card, index) => (
-            <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
-          ))}
-        </Content>
-        <ButtonContainer>
-          <MakeButton handleClick={() => navigate("/editor")} />
-        </ButtonContainer>
-      </>
+
+      <Content>
+        {dummy.cards.map((card, index) => (
+          <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
+        ))}
+      </Content>
+      <ButtonContainer>
+        <MakeButton handleClick={() => navigate("/editor")} />
+      </ButtonContainer>
+
       {showDetail && (
         <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail} />
       )}
@@ -122,10 +72,10 @@ const Container = styled.div<ContainerProps>`
 `;
 
 const Content = styled.div`
-  display: flex;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0 auto;
   padding: 16px;
-  flex-wrap: wrap;
 `;
 
 const ButtonContainer = styled.div`
@@ -136,3 +86,64 @@ const ButtonContainer = styled.div`
   justify-content: center;
   left: 0;
 `;
+const dummy = {
+  cards: [
+    {
+      content: `안녕 레몬아너는 참 귀여워
+그동안 우리 일정관리
+해주고 MC해줘서
+정말 고마워
+앞으로 잘부탁하구
+우리 화이팅하자~!`,
+      background: "CARD_BLUE",
+      font: "default",
+    },
+    {
+      content: `안녕 레몬아너는 참 귀여워
+그동안 우리 일정관리
+해주고 MC해줘서
+정말 고마워
+앞으로 잘부탁하구
+우리 화이팅하자~!`,
+      background: "CARD_RED",
+      font: "default",
+    },
+    {
+      content: `안녕 레몬아너는 참 귀여워
+그동안 우리 일정관리
+해주고 MC해줘서
+정말 고마워
+앞으로 잘부탁하구
+우리 화이팅하자~!`,
+      background: "CARD_PURPLE",
+      font: "default",
+    },
+    {
+      content: `안녕 레몬아너는 참 귀여워
+그동안 우리 일정관리
+해주고 MC해줘서
+정말 고마워
+앞으로 잘부탁하구
+우리 화이팅하자~!`,
+      background: "CARD_GREEN",
+      font: "default",
+    },
+    {
+      content: `안녕 레몬아너는 참 귀여워
+그동안 우리 일정관리
+해주고 MC해줘서
+정말 고마워
+앞으로 잘부탁하구
+우리 화이팅하자~!`,
+      background: "CARD_YELLOW",
+      font: "default",
+    },
+  ],
+  userName: "레몬은 귀여워",
+  paperId: 0,
+  title: "3학년 2반",
+  dueDate: new Date(),
+  theme: "light",
+  paperUrl: "",
+  opeanStatus: "Y",
+};
