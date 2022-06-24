@@ -31,7 +31,7 @@ const MyPageLayout = styled.section`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  max-width: 680px;
+  max-width: 480px;
   min-width: 380px;
   width: 100%;
   height: 100vh;

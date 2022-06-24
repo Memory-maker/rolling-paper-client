@@ -11,50 +11,6 @@ import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import getCookie from "../../utils/cookie";
 import { colors } from "../../theme/color";
 
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
-  max-width: 680px;
-  min-width: 380px;
-  width: 100%;
-  height: 100vh;
-  padding: 42px;
-  background-color: ${colors["MAIN_BG"]};
-`;
-
-const TitleWrapper = styled.div`
-  margin: 20px 0;
-`;
-
-const Content = styled.div`
-  text-align: center;
-  font-size: 32px;
-  font-weight: 400;
-`;
-
-const CardList = styled.div`
-  display: grid;
-  row-gap: 10px;
-  column-gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  margin: 20px 0;
-`;
-
-const KakaoLogo = styled(KakaoIcon)`
-  position: absolute;
-  left: 16px;
-`;
-
-const KakaoButton = styled.img`
-  position: absolute;
-  bottom: 42px;
-  cursor: pointer;
-`;
-
 interface CardProps {
   content: string;
   background: string;
@@ -123,21 +79,73 @@ const Home = () => {
     }
   }, [kakaoJsKey]);
 
+  useEffect(() => {}, []);
+
   return (
     <Wrapper>
-      <TitleWrapper>
-        <Title />
-      </TitleWrapper>
-      <CardList>
-        {cardDummy.map((props: CardProps, index) => (
-          <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
-        ))}
-      </CardList>
-      <Content>추억의 롤링페이퍼에서</Content>
-      <Content>추억을 만들고 간직하세요!</Content>
+      <Container>
+        <TitleWrapper>
+          <Title />
+        </TitleWrapper>
+        <CardList>
+          {cardDummy.map((props: CardProps, index) => (
+            <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
+          ))}
+        </CardList>
+        <Content>추억의 롤링페이퍼에서</Content>
+        <Content>추억을 만들고 간직하세요!</Content>
+      </Container>
       <KakaoButton src={`./imgs/kakao-login.png`} onClick={kakaoLogin} />
     </Wrapper>
   );
 };
 
 export default Home;
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 480px;
+  min-width: 380px;
+  width: 100%;
+  height: 100vh;
+  padding: 42px;
+  background-color: ${colors["MAIN_BG"]};
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TitleWrapper = styled.div`
+  margin: 20px 0;
+`;
+
+const Content = styled.div`
+  text-align: center;
+  font-size: 32px;
+  font-weight: 400;
+`;
+
+const CardList = styled.div`
+  display: grid;
+  row-gap: 10px;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin: 20px 0;
+`;
+
+const KakaoLogo = styled(KakaoIcon)`
+  position: absolute;
+  left: 16px;
+`;
+
+const KakaoButton = styled.img`
+  cursor: pointer;
+`;

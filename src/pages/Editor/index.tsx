@@ -14,12 +14,12 @@ const EditorWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  max-width: 680px;
+  max-width: 480px;
   min-width: 380px;
   width: 100%;
   height: 100vh;
   padding: 20px;
-  box-sizing:border-box;
+  box-sizing: border-box;
   background-color: #fff8eb;
 `;
 

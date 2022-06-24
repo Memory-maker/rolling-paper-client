@@ -13,43 +13,48 @@ const RollingPaper = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
   const dummy = {
-    cards: [ {
-    content: `안녕 레몬아너는 참 귀여워
+    cards: [
+      {
+        content: `안녕 레몬아너는 참 귀여워
 그동안 우리 일정관리
 해주고 MC해줘서
 정말 고마워
 앞으로 잘부탁하구
 우리 화이팅하자~!`,
-    background: "CARD_BLUE",
-    font: "default",
-  }, {
-    content: `안녕 레몬아너는 참 귀여워
+        background: "CARD_BLUE",
+        font: "default",
+      },
+      {
+        content: `안녕 레몬아너는 참 귀여워
 그동안 우리 일정관리
 해주고 MC해줘서
 정말 고마워
 앞으로 잘부탁하구
 우리 화이팅하자~!`,
-    background: "CARD_RED",
-    font: "default",
-  }, {
-    content: `안녕 레몬아너는 참 귀여워
+        background: "CARD_RED",
+        font: "default",
+      },
+      {
+        content: `안녕 레몬아너는 참 귀여워
 그동안 우리 일정관리
 해주고 MC해줘서
 정말 고마워
 앞으로 잘부탁하구
 우리 화이팅하자~!`,
-    background: "CARD_PURPLE",
-    font: "default",
-  }, {
-    content: `안녕 레몬아너는 참 귀여워
+        background: "CARD_PURPLE",
+        font: "default",
+      },
+      {
+        content: `안녕 레몬아너는 참 귀여워
 그동안 우리 일정관리
 해주고 MC해줘서
 정말 고마워
 앞으로 잘부탁하구
 우리 화이팅하자~!`,
-    background: "CARD_GREEN",
-    font: "default",
-  },],
+        background: "CARD_GREEN",
+        font: "default",
+      },
+    ],
     userName: "레몬은 귀여워",
     paperId: 0,
     title: "3학년 2반",
@@ -61,38 +66,39 @@ const RollingPaper = () => {
   const handleClick = (id: number) => {
     setShowDetail(true);
     setCardIndex(id);
-  }
-  const onPrev =() =>{
-    if(0 === cardIndex){
-      setCardIndex(dummy.cards.length); 
-    }else{
-      setCardIndex(cardIndex-1);
+  };
+  const onPrev = () => {
+    if (0 === cardIndex) {
+      setCardIndex(dummy.cards.length);
+    } else {
+      setCardIndex(cardIndex - 1);
     }
-  }
-  const onNext =() =>{
-    if(dummy.cards.length === cardIndex){
-      setCardIndex(0); 
-    }else{
-      setCardIndex(cardIndex+1);
+  };
+  const onNext = () => {
+    if (dummy.cards.length === cardIndex) {
+      setCardIndex(0);
+    } else {
+      setCardIndex(cardIndex + 1);
     }
-  }
- const navigate = useNavigate();
+  };
+  const navigate = useNavigate();
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
       <Header infos={dummy} />
       <>
-      <Content>
-        {dummy.cards.map((card, index) => (
-          <Card index={index} key={index} card={card} handleClick={() => handleClick(index)}/>
-        ))}
-      </Content>
-      <ButtonContainer>
-        <MakeButton handleClick={() => navigate('/editor')} />
-      </ButtonContainer>
+        <Content>
+          {dummy.cards.map((card, index) => (
+            <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
+          ))}
+        </Content>
+        <ButtonContainer>
+          <MakeButton handleClick={() => navigate("/editor")} />
+        </ButtonContainer>
       </>
-      {showDetail && <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail}/>}
+      {showDetail && (
+        <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail} />
+      )}
     </Container>
-    
   );
 };
 
@@ -107,7 +113,7 @@ const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  max-width: 680px;
+  max-width: 480px;
   min-width: 380px;
   width: 100%;
   height: 100vh;
