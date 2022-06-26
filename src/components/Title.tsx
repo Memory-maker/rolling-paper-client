@@ -1,33 +1,36 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 import { colors } from "../theme/color";
+import { ReactComponent as LogoIcon } from "/src/assets/svgs/logo.svg";
+import { ReactComponent as LogoLeftIcon } from "/src/assets/svgs/logoLeft.svg";
+import { ReactComponent as LogoRightIcon } from "/src/assets/svgs/logoRight.svg";
+import { ReactComponent as Logo } from "/src/assets/svgs/logoText.svg";
 
-const Logo = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background-image: url("./imgs/logo.png");
-  background-position: center center;
-  background-size: contain;
-  max-width: 500px;
-  width: 100%;
-  height: 30vh;
-  background-repeat: no-repeat;
-`;
-
-interface Content {
-  children: ReactNode;
-}
-
-const Content = styled.div<Content>`
-  z-index: 3;
-  font-family: ghanachoco;
-  font-size: 48px;
-  color: ${colors.POINT_COLOR};
+  .icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      margin: 0 7px;
+    }
+    margin-bottom: 24px;
+  }
 `;
 
 const Title = () => {
-  return <Logo />;
+  return (
+    <Container>
+      <div className="icon-container">
+        <LogoLeftIcon className="plane-left" />
+        <LogoIcon className="plane" />
+        <LogoRightIcon className="plane-right" />
+      </div>
+      <Logo className="text" />
+    </Container>
+  );
 };
 
 export default Title;

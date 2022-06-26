@@ -28,7 +28,7 @@ const CardContainer = styled.div<CardContainer>`
 
 const Card = ({ content, background, rotate }: Card) => {
   return (
-    <CardContainer background={background} rotate={rotate}>
+    <CardContainer className="card" background={background} rotate={rotate}>
       {content}
     </CardContainer>
   );
