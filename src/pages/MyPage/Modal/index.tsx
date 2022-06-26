@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 interface Props {
   setIsModalOpen: (state: boolean) => void;
+  children: React.ReactNode;
 }
 
 const ModalWrapper = styled.div`
@@ -38,7 +39,7 @@ const ModalBody = styled.div`
   z-index: 100;
 `;
 
-function Modal({ setIsModalOpen }: Props) {
+function Modal({ setIsModalOpen, children }: Props) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
   const modalRef = useRef<HTMLDivElement>(null);
   const [makeRollVisible, setMakeRollVisible] = useState(true);
@@ -72,8 +73,9 @@ function Modal({ setIsModalOpen }: Props) {
     <ModalWrapper>
       <ModalBackWrapper ref={modalRef} onClick={handleModalOutsideClick} />
       <ModalBody>
-        {makeRollVisible && <MakeRoll handleClickButton={handleClickButton} />}
-        {shareRollVisible && <ShareRoll />}
+        {children}
+        {/* {makeRollVisible && <MakeRoll handleClickButton={handleClickButton} />}
+        {shareRollVisible && <ShareRoll />} */}
       </ModalBody>
     </ModalWrapper>,
     modalRoot,

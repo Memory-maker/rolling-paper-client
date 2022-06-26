@@ -1,15 +1,5 @@
-import { useCallback, useState, MouseEvent } from "react";
-
 import { ReactComponent as PaperAirPlaneIcon } from "/src/assets/svgs/paper-airplane.svg";
 import styled from "styled-components";
-
-<<<<<<< HEAD
-interface Props {
-  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
-}
-
-function AddButton({ handleClickButton }: Props) {
-=======
 import { useCallback, useState } from "react";
 import { colors } from "../../../../theme/color";
 
@@ -17,7 +7,6 @@ interface ButtonProps {
   setIsModalOpen: () => void;
 }
 function AddButton({ setIsModalOpen }: ButtonProps) {
->>>>>>> 2e34389092e22d4f1c5883be475e31b4c2471559
   return (
     <StyledButton type="button" onClick={setIsModalOpen}>
       {<StyledIcon />}
