@@ -121,6 +121,7 @@ function MakeRoll({ handleClickButton }: Props) {
     setPaperTheme(e.currentTarget.value);
   };
 
+<<<<<<< HEAD:src/pages/Modal/MakeRoll/index.tsx
   return (
     <Wrapper>
       <Title>롤링페이퍼를 만들어볼까요?</Title>
@@ -159,6 +160,66 @@ function MakeRoll({ handleClickButton }: Props) {
         </Button>
       </form>
     </Wrapper>
+=======
+  const handleClickButton = () => {
+    // fetch("백엔드쪽 서버 url", {
+    //   method: "post",
+    //   body: JSON.stringify({
+    //     title: title,
+    //     dueDate: dueDate,
+    //     paperTheme: paperTheme,
+    //     batch: 1,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     if (res.success) {
+    //       setPaperUrl(`https://rolling-paper-client-peach.vercel.app/rollingPaper/${res.json()}`);
+    //     }
+    //   });
+  };
+
+  return (
+    <Modal setIsModalOpen={setIsModalOpen}>
+      <Wrapper onClick={(e) => e.stopPropagation()}>
+        <Title>롤링페이퍼를 만들어볼까요?</Title>
+
+        <form>
+          <Label>롤링페이퍼 이름을 적어주세요</Label>
+          <InputField type="text" name="title" onChange={handleTitleChange} />
+
+          <Label>언제 열어보시겠어요?</Label>
+          <InputField type="date" name="dueDate" onChange={handleDateChange} />
+
+          <Label>테마를 선택해주세요!</Label>
+          <RadioWrapper>
+            <RadioLabel htmlFor="light">
+              <RadioInputField
+                type="radio"
+                name="paperTheme"
+                id="light"
+                value="light"
+                onChange={handleThemeChange}
+                defaultChecked
+              />
+              <span>라이트 테마</span>
+              <RadioColor color="#FFF8EB" />
+            </RadioLabel>
+
+            <RadioLabel htmlFor="dark">
+              <RadioInputField type="radio" name="paperTheme" id="dark" value="dark" onChange={handleThemeChange} />
+              <span>다크 테마</span>
+              <RadioColor color="#736D62" />
+            </RadioLabel>
+          </RadioWrapper>
+
+          <Button type="button" onClick={handleClickButton}>
+            완료
+          </Button>
+        </form>
+      </Wrapper>
+    </Modal>
+>>>>>>> 2e34389092e22d4f1c5883be475e31b4c2471559:src/pages/MakeRoll/index.tsx
   );
 }
 

@@ -8,7 +8,7 @@ interface FontOptionProps {
 
 function BackgroundColorOption({ value, onChange, checked }: FontOptionProps) {
   return (
-    <label style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <label style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <input
         type="radio"
         value={value}

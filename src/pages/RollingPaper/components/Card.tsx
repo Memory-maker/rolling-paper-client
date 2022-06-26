@@ -8,10 +8,10 @@ import cardDummy from "../utils/cardDummy";
 interface CardProps {
   card: CardType;
   index: number;
-  handleClick: ()=>void;
+  handleClick: () => void;
 }
 
-const Card = ({ index, card ,handleClick}: CardProps) => {
+const Card = ({ index, card, handleClick }: CardProps) => {
   return (
     <CardContainer onClick={handleClick} index={index} background={card.background} font={card.font}>
       {card.content}
@@ -42,5 +42,5 @@ const CardContainer = styled.div<CardContainerProps>`
   background-color: ${(props) => cardColor[props.background]};
   font-family: ${(props) => fonts[props.font]};
   border-radius: 20px;
-  transform: ${(props) => (props.index % 2 === 0 ? "rotate(-10deg)" : "rotate(10deg)")};
+  transform: ${(props) => (props.index % 3 && props.index % 4 ? "rotate(-10deg)" : "rotate(10deg)")};
 `;

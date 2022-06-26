@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const RadioButtonLabel = styled.label`
-  font-size: 12px;
+  font-size: 16px;
   color: ${(props) => props.color};
 `;
 
