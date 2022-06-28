@@ -1,7 +1,4 @@
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import Modal from "../../Modal";
+import { useCallback } from "react";
 
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
@@ -88,14 +85,14 @@ interface Props {
 }
 
 function ShareRoll({ paperUrl }: Props) {
-  const [visible, setVisible] = useState(true);
+  // const [visible, setVisible] = useState(true);
   const shareUrl = `https://rolling-paper-client-blue.vercel.app/rollingpaper/11${paperUrl}`;
 
-  const shareData = {
-    title: "롤링 페이퍼",
-    text: "롤링 페이퍼",
-    url: shareUrl,
-  };
+  // const shareData = {
+  //   title: "롤링 페이퍼",
+  //   text: "롤링 페이퍼",
+  //   url: shareUrl,
+  // };
 
   function copyToClipboard() {
     const t = document.createElement("textarea");
@@ -108,7 +105,7 @@ function ShareRoll({ paperUrl }: Props) {
 
   const handleClickButton = useCallback(() => {
     copyToClipboard();
-    setVisible(false);
+    // setVisible(false);
   }, []);
 
   return (

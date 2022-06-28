@@ -1,7 +1,6 @@
-import { MouseEvent, ChangeEvent, useState } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 
 import styled from "styled-components";
-import Modal from "../../Modal";
 
 const Wrapper = styled.div`
   display: flex;
