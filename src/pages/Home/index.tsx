@@ -1,25 +1,14 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
-import Logo from "../../components/Logo";
+import styled from "styled-components";
 import Title from "../../components/Title";
 import Card from "./components/Card";
 import cardDummy from "./utils/cardDummy";
-import { ReactComponent as KakaoIcon } from "/src/assets/svgs/kakao.svg";
-
-import { login_API, singup_API } from "../../api/user";
 import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
-import getCookie from "../../utils/cookie";
 import { colors } from "../../theme/color";
-import gsap, { Back, Bounce } from "gsap";
+import gsap, { Back } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
-
-
-interface CardProps {
-  content: string;
-  background: string;
-  rotate: string;
-}
+import { Card as CardProps } from "./utils/cardDummy";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -175,12 +164,11 @@ const Wrapper = styled.div`
   background-color: ${colors["MAIN_BG"]};
 `;
 
-const Container =styled.div`
-  display:flex;
+const Container = styled.div`
+  display: flex;
   flex-direction: column;
-  align-items:center;
-`
-
+  align-items: center;
+`;
 
 const TitleWrapper = styled.div`
   margin: 20px 0;
