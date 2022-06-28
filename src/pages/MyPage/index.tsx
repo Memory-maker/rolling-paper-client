@@ -3,11 +3,12 @@ import AddButton from "./components/AddButton";
 import styled from "styled-components";
 import Header from "./Header";
 import Main from "./Main";
-import MakeRoll from "../Modal/MakeRoll";
+import MakeRoll from "../CreateRoll/MakeRoll";
+import CreateRoll from "../CreateRoll";
 
 function MyPage() {
   const USER_NAME = "레몬은 아이셔";
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const renderHeaderInfo = () => {
     return (
@@ -18,8 +19,6 @@ function MyPage() {
     );
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const handleClickButton = useCallback(() => {
     setIsModalOpen((prevState) => !prevState);
   }, [isModalOpen]);
@@ -28,8 +27,8 @@ function MyPage() {
     <MyPageLayout>
       <Header>{renderHeaderInfo()}</Header>
       <Main />
-      <AddButton setIsModalOpen={() => setIsOpen(true)} />
-      {isOpen && <MakeRoll setIsModalOpen={setIsOpen} />}
+      <AddButton setIsModalOpen={handleClickButton} />
+      {isModalOpen && <CreateRoll setIsModalOpen={setIsModalOpen} />}
     </MyPageLayout>
   );
 }
