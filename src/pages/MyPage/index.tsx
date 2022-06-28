@@ -33,7 +33,7 @@ const MyPageLayout = styled.section`
   margin: 0 auto;
   max-width: 680px;
   min-width: 380px;
-  width: 100%;
+  width: 375px;
   height: 100vh;
 `;
 

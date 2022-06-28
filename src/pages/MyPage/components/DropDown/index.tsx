@@ -1,20 +1,19 @@
-import { useCallback, useState, useContext } from "react";
+import { useCallback, useState } from "react";
 import styled from "styled-components";
-import { CreateContext } from "../../../../App";
 
 function DropDown() {
-  const toggleContext = useContext(CreateContext);
+  const [isToggle, setIsToggle] = useState(false);
 
   const handleClickShare = useCallback(() => {
     confirm("공유하기를 진행하시겠습니까?");
   }, []);
 
   const handleClickDelete = useCallback(() => {
-    confirm("삭제하기를 진행하시겠습니까?");
+    const value = confirm("삭제하기를 진행하시겠습니까?");
   }, []);
 
   const handleClickLock = useCallback(() => {
-    toggleContext?.setIsLock((prevState) => !prevState);
+    setIsToggle((prevState) => !prevState);
   }, []);
 
   return (
@@ -26,7 +25,7 @@ function DropDown() {
         삭제하기
       </button>
       <button type="button" onClick={handleClickLock}>
-        {toggleContext?.isLock ? "모두 보기" : "나만 보기"}
+        {isToggle ? "모두 보기" : "나만 보기"}
       </button>
     </StyledDropDownWrap>
   );

@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-import { useEffect, useContext } from "react";
 import PaperItem from "../components/PaperItem";
-import { CreateContext } from "../../../App";
 
 const USER_DATA = [
   {
@@ -19,15 +17,13 @@ export interface RollingPaper {
 }
 
 function Main() {
-  const toggleContext = useContext(CreateContext);
-
   return (
     <>
       <StyledMainTitle>
         <div>롤링 페이퍼 이름</div>
         <div>오픈 날짜</div>
       </StyledMainTitle>
-      {USER_DATA.map((user) => (
+      {USER_DATA?.map((user) => (
         <PaperItem user={user} key={user.id} />
       ))}
     </>

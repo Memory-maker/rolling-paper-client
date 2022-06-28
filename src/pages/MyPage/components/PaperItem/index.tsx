@@ -4,17 +4,18 @@ import { ReactComponent as LockIcon } from "/src/assets/svgs/lock.svg";
 import styled from "styled-components";
 import DropDown from "../DropDown";
 import { RollingPaper } from "../../Main/index";
-import { useCallback, useContext } from "react";
-import { CreateContext } from "../../../../App";
+import { useCallback, useState } from "react";
 
 interface PaperItemProps {
   user: RollingPaper;
 }
 
 function PaperItem({ user }: PaperItemProps) {
-  const toggleContext = useContext(CreateContext);
+  const [isLock, setIsLock] = useState(false);
+  const [isToggle, setIsToggle] = useState(false);
+
   const handleClickToggle = useCallback(() => {
-    toggleContext?.setIsToggle((prevState) => !prevState);
+    setIsToggle((prevState) => !prevState);
   }, []);
 
   return (
@@ -23,7 +24,7 @@ function PaperItem({ user }: PaperItemProps) {
         <StyledMainItems>
           <StytledMainItemTitle>
             <div>{user.title}</div>
-            <div>{toggleContext?.isLock && <LockIcon />}</div>
+            <div>{!isLock && <LockIcon />}</div>
           </StytledMainItemTitle>
           <StyledMainItemDate>
             <div>{user.dueDate}</div>
@@ -31,7 +32,7 @@ function PaperItem({ user }: PaperItemProps) {
           </StyledMainItemDate>
         </StyledMainItems>
       </StyledMainContent>
-      {toggleContext?.isToggle && <DropDown />}
+      {isToggle && <DropDown />}
     </>
   );
 }
