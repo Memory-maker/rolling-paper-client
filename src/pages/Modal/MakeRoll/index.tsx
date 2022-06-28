@@ -1,18 +1,16 @@
-import { useCallback, ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import Modal from "../Modal";
+import { MouseEvent, ChangeEvent, useState } from "react";
 
 import styled from "styled-components";
+import Modal from "../../MyPage/Modal";
 
 interface Props {
   setIsModalOpen: (state: boolean) => void;
+  // handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Wrapper = styled.div`
   display: flex;
   max-width: 100%;
-  max-height: 300px;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -125,26 +123,26 @@ function MakeRoll({ setIsModalOpen }: Props) {
   };
 
   const handleClickButton = () => {
-    fetch("백엔드쪽 서버 url", {
-      method: "post",
-      body: JSON.stringify({
-        title: title,
-        dueDate: dueDate,
-        paperTheme: paperTheme,
-        batch: 1,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success) {
-          setPaperUrl(`https://rolling-paper-client-peach.vercel.app/rollingPaper/${res.json()}`);
-        }
-      });
+    // fetch("백엔드쪽 서버 url", {
+    //   method: "post",
+    //   body: JSON.stringify({
+    //     title: title,
+    //     dueDate: dueDate,
+    //     paperTheme: paperTheme,
+    //     batch: 1,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     if (res.success) {
+    //       setPaperUrl(`https://rolling-paper-client-peach.vercel.app/rollingPaper/${res.json()}`);
+    //     }
+    //   });
   };
 
   return (
     <Modal setIsModalOpen={setIsModalOpen}>
-      <Wrapper>
+      <Wrapper onClick={(e) => e.stopPropagation()}>
         <Title>롤링페이퍼를 만들어볼까요?</Title>
 
         <form>

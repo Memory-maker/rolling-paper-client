@@ -1,10 +1,13 @@
+import { useCallback, useState } from "react";
 import AddButton from "./components/AddButton";
 import styled from "styled-components";
 import Header from "./Header";
 import Main from "./Main";
+import MakeRoll from "../Modal/MakeRoll";
 
 function MyPage() {
   const USER_NAME = "레몬은 아이셔";
+  const [isOpen, setIsOpen] = useState(false);
 
   const renderHeaderInfo = () => {
     return (
@@ -15,13 +18,18 @@ function MyPage() {
     );
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleClickButton = useCallback(() => {
+    setIsModalOpen((prevState) => !prevState);
+  }, [isModalOpen]);
+
   return (
     <MyPageLayout>
-      <HeaderWrapper>
-        <Header>{renderHeaderInfo()}</Header>
-        <Main />
-        <AddButton />
-      </HeaderWrapper>
+      <Header>{renderHeaderInfo()}</Header>
+      <Main />
+      <AddButton setIsModalOpen={() => setIsOpen(true)} />
+      {isOpen && <MakeRoll setIsModalOpen={setIsOpen} />}
     </MyPageLayout>
   );
 }
@@ -31,16 +39,11 @@ const MyPageLayout = styled.section`
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  max-width: 680px;
+  max-width: 480px;
   min-width: 380px;
   width: 375px;
   height: 100vh;
-`;
-
-const HeaderWrapper = styled.div`
   position: relative;
-  width: 100%;
-  height: 100%;
   background: #fff8eb;
 `;
 
