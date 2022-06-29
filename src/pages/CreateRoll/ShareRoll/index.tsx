@@ -1,13 +1,8 @@
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
 import styled from "styled-components";
-
-interface Props {
-  setIsModalOpen: (state: boolean) => void;
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -40,7 +35,7 @@ const InputWrapper = styled.div`
   position: relative;
 `;
 
-const IconWrapper = styled.div`
+const IconButton = styled.button`
   position: absolute;
   right: 14px;
   top: 26px;
@@ -85,29 +80,51 @@ const Span = styled.span`
   padding: 0 15px;
 `;
 
-function ShareRoll() {
-  const [visible, setVisible] = useState(true);
+interface Props {
+  paperUrl: string;
+}
+
+function ShareRoll({ paperUrl }: Props) {
+  // const [visible, setVisible] = useState(true);
+  const shareUrl = `https://rolling-paper-client-blue.vercel.app/rollingpaper/11${paperUrl}`;
+
+  // const shareData = {
+  //   title: "롤링 페이퍼",
+  //   text: "롤링 페이퍼",
+  //   url: shareUrl,
+  // };
+
+  function copyToClipboard() {
+    const t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = shareUrl;
+    t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+  }
+
   const handleClickButton = useCallback(() => {
-    setVisible(false);
+    copyToClipboard();
+    // setVisible(false);
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper onClick={(e) => e.stopPropagation()}>
       <Title>롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?</Title>
 
       <form>
         <Label>롤링페이퍼 링크</Label>
         <InputWrapper>
-          <InputField type="text" name="paperUrl" value="https://rolling-paper-client-blue.vercel.app/" />
-          <IconWrapper>
+          <InputField type="text" name="paperUrl" value={shareUrl} readOnly />
+          <IconButton type="button" onClick={handleClickButton}>
             <ClipboardIcon />
-          </IconWrapper>
+          </IconButton>
         </InputWrapper>
-        {/* 
+
         <Button type="button" onClick={handleClickButton}>
-          <Span>닫기</Span>
+          <Span>공유하기</Span>
           <ShareIcon />
-        </Button> */}
+        </Button>
       </form>
     </Wrapper>
   );

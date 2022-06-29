@@ -1,11 +1,6 @@
-import { MouseEvent, ChangeEvent, useState } from "react";
+import { MouseEvent, ChangeEvent } from "react";
 
 import styled from "styled-components";
-
-interface Props {
-  // setIsModalOpen: (state: boolean) => void;
-  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
-}
 
 const Wrapper = styled.div`
   display: flex;
@@ -103,12 +98,14 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-function MakeRoll({ handleClickButton }: Props) {
-  const [title, setTitle] = useState("");
-  const [dueDate, setDueDate] = useState("");
-  const [paperTheme, setPaperTheme] = useState("");
-  const [paperUrl, setPaperUrl] = useState("");
+interface Props {
+  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
+  setTitle: (state: string) => void;
+  setDueDate: (state: string) => void;
+  setPaperTheme: (state: string) => void;
+}
 
+function MakeRoll({ handleClickButton, setTitle, setDueDate, setPaperTheme }: Props) {
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
   };
@@ -119,10 +116,11 @@ function MakeRoll({ handleClickButton }: Props) {
 
   const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPaperTheme(e.currentTarget.value);
+    console.log(e.currentTarget.value);
   };
 
   return (
-    <Wrapper>
+    <Wrapper onClick={(e) => e.stopPropagation()}>
       <Title>롤링페이퍼를 만들어볼까요?</Title>
 
       <form>
