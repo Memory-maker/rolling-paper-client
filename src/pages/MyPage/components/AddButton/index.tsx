@@ -37,9 +37,10 @@ const StyledButton = styled.button`
 `;
 
 const StyledIcon = styled(PaperAirPlaneIcon)`
-  padding-bottom: 5px;
+  width: 38px;
   path,
   line {
+    fill: #fff;
     stroke-width: 2px;
     stroke: #fff;
   }
