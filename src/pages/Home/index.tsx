@@ -14,7 +14,6 @@ import { colors } from "../../theme/color";
 import gsap, { Back, Bounce } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
 
-
 interface CardProps {
   content: string;
   background: string;
@@ -171,25 +170,25 @@ const Wrapper = styled.div`
   min-width: 380px;
   width: 100%;
   height: 100vh;
-  padding: 42px;
+  padding: 32px;
   background-color: ${colors["MAIN_BG"]};
 `;
 
-const Container =styled.div`
-  display:flex;
+const Container = styled.div`
+  display: flex;
   flex-direction: column;
-  align-items:center;
-`
-
+  align-items: center;
+`;
 
 const TitleWrapper = styled.div`
-  margin: 20px 0;
+  margin: 8px 0;
 `;
 
 const Content = styled.div`
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 400;
+  margin: 4px 0;
 `;
 
 const CardList = styled.div`
