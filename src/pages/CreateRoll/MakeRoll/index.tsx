@@ -3,6 +3,70 @@ import { MouseEvent, ChangeEvent } from "react";
 import styled from "styled-components";
 import { modalColors } from "../../../theme/color";
 
+interface Props {
+  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
+  setTitle: (state: string) => void;
+  setDueDate: (state: string) => void;
+  setPaperTheme: (state: string) => void;
+}
+
+function MakeRoll({ handleClickButton, setTitle, setDueDate, setPaperTheme }: Props) {
+  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.currentTarget.value);
+  };
+
+  const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDueDate(e.currentTarget.value);
+  };
+
+  const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPaperTheme(e.currentTarget.value);
+    console.log(e.currentTarget.value);
+  };
+
+  return (
+    <Wrapper onClick={(e) => e.stopPropagation()}>
+      <Title>롤링페이퍼를 만들어볼까요?</Title>
+
+      <form>
+        <Label>롤링페이퍼 이름을 적어주세요</Label>
+        <InputField type="text" name="title" onChange={handleTitleChange} />
+
+        <Label>언제 열어보시겠어요?</Label>
+        <InputField type="date" name="dueDate" onChange={handleDateChange} />
+
+        <Label>테마를 선택해주세요!</Label>
+        <RadioWrapper>
+          <RadioLabel htmlFor="light">
+            <RadioInputField
+              type="radio"
+              name="paperTheme"
+              id="light"
+              value="light"
+              onChange={handleThemeChange}
+              defaultChecked
+            />
+            <span>라이트 테마</span>
+            <RadioColor color="#FFF8EB" />
+          </RadioLabel>
+
+          <RadioLabel htmlFor="dark">
+            <RadioInputField type="radio" name="paperTheme" id="dark" value="dark" onChange={handleThemeChange} />
+            <span>다크 테마</span>
+            <RadioColor color="#736D62" />
+          </RadioLabel>
+        </RadioWrapper>
+
+        <Button type="button" onClick={handleClickButton}>
+          완료
+        </Button>
+      </form>
+    </Wrapper>
+  );
+}
+
+export default MakeRoll;
+
 const Wrapper = styled.div`
   display: flex;
   max-width: 100%;
@@ -98,67 +162,3 @@ const Button = styled.button`
   border-radius: 20px;
   cursor: pointer;
 `;
-
-interface Props {
-  handleClickButton: (e: MouseEvent<HTMLButtonElement>) => void;
-  setTitle: (state: string) => void;
-  setDueDate: (state: string) => void;
-  setPaperTheme: (state: string) => void;
-}
-
-function MakeRoll({ handleClickButton, setTitle, setDueDate, setPaperTheme }: Props) {
-  const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value);
-  };
-
-  const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setDueDate(e.currentTarget.value);
-  };
-
-  const handleThemeChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPaperTheme(e.currentTarget.value);
-    console.log(e.currentTarget.value);
-  };
-
-  return (
-    <Wrapper onClick={(e) => e.stopPropagation()}>
-      <Title>롤링페이퍼를 만들어볼까요?</Title>
-
-      <form>
-        <Label>롤링페이퍼 이름을 적어주세요</Label>
-        <InputField type="text" name="title" onChange={handleTitleChange} />
-
-        <Label>언제 열어보시겠어요?</Label>
-        <InputField type="date" name="dueDate" onChange={handleDateChange} />
-
-        <Label>테마를 선택해주세요!</Label>
-        <RadioWrapper>
-          <RadioLabel htmlFor="light">
-            <RadioInputField
-              type="radio"
-              name="paperTheme"
-              id="light"
-              value="light"
-              onChange={handleThemeChange}
-              defaultChecked
-            />
-            <span>라이트 테마</span>
-            <RadioColor color="#FFF8EB" />
-          </RadioLabel>
-
-          <RadioLabel htmlFor="dark">
-            <RadioInputField type="radio" name="paperTheme" id="dark" value="dark" onChange={handleThemeChange} />
-            <span>다크 테마</span>
-            <RadioColor color="#736D62" />
-          </RadioLabel>
-        </RadioWrapper>
-
-        <Button type="button" onClick={handleClickButton}>
-          완료
-        </Button>
-      </form>
-    </Wrapper>
-  );
-}
-
-export default MakeRoll;

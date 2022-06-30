@@ -6,6 +6,49 @@ import Modal from "../Modal";
 import styled from "styled-components";
 import { modalColors } from "../../theme/color";
 
+function CreateName() {
+  const navigate = useNavigate();
+  const [, setIsModalOpen] = useState(true);
+  const [name, setName] = useState("");
+
+  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  };
+
+  const handleClickButton = () => {
+    const data = { nickname: name };
+    const url = `http://ec2-15-165-187-40.ap-northeast-2.compute.amazonaws.com:8080/paper`;
+
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success) {
+          navigate("/mypage");
+        }
+      });
+  };
+
+  return (
+    <Modal setIsModalOpen={setIsModalOpen}>
+      <Wrapper onClick={(e) => e.stopPropagation()}>
+        <Title>내가 누구인지 알 수 있도록 닉네임을 적어볼까요?</Title>
+
+        <form>
+          <Label>닉네임</Label>
+          <InputField type="text" name="name" onChange={handleNameChange} />
+          <Button type="button" onClick={handleClickButton}>
+            <Span>다음</Span>
+          </Button>
+        </form>
+      </Wrapper>
+    </Modal>
+  );
+}
+export default CreateName;
+
 const Wrapper = styled.div`
   display: flex;
   max-width: 100%;
@@ -70,46 +113,3 @@ const Button = styled.button`
 const Span = styled.span`
   padding: 0 15px;
 `;
-
-function CreateName() {
-  const navigate = useNavigate();
-  const [, setIsModalOpen] = useState(true);
-  const [name, setName] = useState("");
-
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
-  };
-
-  const handleClickButton = () => {
-    const data = { nickname: name };
-    const url = `http://ec2-15-165-187-40.ap-northeast-2.compute.amazonaws.com:8080/paper`;
-
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success) {
-          navigate("/mypage");
-        }
-      });
-  };
-
-  return (
-    <Modal setIsModalOpen={setIsModalOpen}>
-      <Wrapper onClick={(e) => e.stopPropagation()}>
-        <Title>내가 누구인지 알 수 있도록 닉네임을 적어볼까요?</Title>
-
-        <form>
-          <Label>닉네임</Label>
-          <InputField type="text" name="name" onChange={handleNameChange} />
-          <Button type="button" onClick={handleClickButton}>
-            <Span>다음</Span>
-          </Button>
-        </form>
-      </Wrapper>
-    </Modal>
-  );
-}
-export default CreateName;
