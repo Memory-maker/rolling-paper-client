@@ -29,4 +29,11 @@ const colors = {
   WHITE_COLOR: "#ffff",
 } as { [id: string]: string };
 
-export { colors, cardColor, textColor };
+const modalColors = {
+  MODAL_BLACK: "#000000",
+  MODAL_WHITE: "#FFFFFF",
+  MODAL_POINT: "#F05A39",
+  MODAL_LABEL: "#787878",
+};
+
+export { colors, cardColor, textColor, modalColors };

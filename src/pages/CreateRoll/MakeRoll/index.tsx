@@ -1,6 +1,7 @@
 import { MouseEvent, ChangeEvent } from "react";
 
 import styled from "styled-components";
+import { modalColors } from "../../../theme/color";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const Title = styled.h2`
   font-size: 24px;
   line-height: 24px;
   text-align: center;
-  color: #000000;
+  color: ${modalColors["MODAL_BLACK"]};
 `;
 
 const Label = styled.label`
@@ -24,7 +25,7 @@ const Label = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 20px;
-  color: #787878;
+  color: ${modalColors["MODAL_LABEL"]};
 `;
 
 const InputField = styled.input`
@@ -32,15 +33,15 @@ const InputField = styled.input`
   height: 44px;
   padding: 12px 14px;
   margin-top: 16px;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: ${modalColors["MODAL_WHITE"]};
+  color: ${modalColors["MODAL_BLACK"]};
   border-radius: 20px;
-  border: 1px solid #f05a39;
+  border: 1px solid ${modalColors["MODAL_POINT"]};
   font-size: 20px;
   font-weight: 400;
 
   &:focus {
-    outline: 1px solid #f05a39;
+    outline: 1px solid ${modalColors["MODAL_POINT"]};
   }
 
   &::-webkit-calendar-picker-indicator {
@@ -56,7 +57,7 @@ const RadioWrapper = styled.div`
 const RadioLabel = styled.label`
   font-size: 14px;
   display: inline-block;
-  color: #000000;
+  color: ${modalColors["MODAL_BLACK"]};
 
   & + & {
     padding-left: 35px;
@@ -72,7 +73,7 @@ const RadioColor = styled.div`
 `;
 
 const RadioInputField = styled.input`
-  accent-color: #f05a39;
+  accent-color: ${modalColors["MODAL_POINT"]};
   margin: 1px 7px 0 0;
 
   & + label span {
@@ -81,7 +82,7 @@ const RadioInputField = styled.input`
   }
 
   &:checked {
-    background-color: #f05a39;
+    background-color: ${modalColors["MODAL_POINT"]};
   }
 `;
 
@@ -91,9 +92,9 @@ const Button = styled.button`
   margin-top: 28px;
   font-size: 24px;
   line-height: 24px;
-  background: #f05a39;
-  color: #ffffff;
-  border: 1px solid #f05a39;
+  background: ${modalColors["MODAL_POINT"]};
+  color: ${modalColors["MODAL_WHITE"]};
+  border: 1px solid ${modalColors["MODAL_POINT"]};
   border-radius: 20px;
   cursor: pointer;
 `;

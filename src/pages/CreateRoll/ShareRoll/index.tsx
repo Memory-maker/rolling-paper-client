@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
 import styled from "styled-components";
+import { modalColors } from "../../../theme/color";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ const Title = styled.h2`
   font-size: 24px;
   line-height: 24px;
   text-align: center;
-  color: #000000;
+  color: ${modalColors["MODAL_BLACK"]};
   word-break: keep-all;
 `;
 
@@ -28,7 +29,7 @@ const Label = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 20px;
-  color: #787878;
+  color: ${modalColors["MODAL_LABEL"]};
 `;
 
 const InputWrapper = styled.div`
@@ -47,15 +48,15 @@ const InputField = styled.input`
   height: 44px;
   padding: 12px 48px 12px 14px;
   margin-top: 16px;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: ${modalColors["MODAL_WHITE"]};
+  color: ${modalColors["MODAL_BLACK"]};
   border-radius: 20px;
-  border: 1px solid #f05a39;
+  border: 1px solid ${modalColors["MODAL_POINT"]};
   font-size: 20px;
   font-weight: 400;
 
   &:focus {
-    outline: 1px solid #f05a39;
+    outline: 1px solid ${modalColors["MODAL_POINT"]};
   }
 
   &::-webkit-calendar-picker-indicator {
@@ -69,9 +70,9 @@ const Button = styled.button`
   margin-top: 28px;
   font-size: 24px;
   line-height: 24px;
-  background: #f05a39;
-  color: #ffffff;
-  border: 1px solid #f05a39;
+  background: ${modalColors["MODAL_POINT"]};
+  color: ${modalColors["MODAL_WHITE"]};
+  border: 1px solid ${modalColors["MODAL_POINT"]};
   border-radius: 20px;
   cursor: pointer;
 `;
