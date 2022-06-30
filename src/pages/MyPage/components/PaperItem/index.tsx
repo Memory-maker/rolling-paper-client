@@ -50,7 +50,6 @@ const StyledMainContent = styled.div`
 
 const StyledMainItems = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 340px;
   height: 78px;
   line-height: 78px;
@@ -61,6 +60,7 @@ const StyledMainItems = styled.div`
   font-family: "LeeSeoYun";
   font-size: 16px;
   user-select: none;
+  overflow: hidden;
 `;
 
 const StytledMainItemTitle = styled.div`
@@ -71,8 +71,6 @@ const StytledMainItemTitle = styled.div`
   height: 100%;
   padding: 0 12px;
   background: #f05a39cc;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
 `;
 
 const StyledMainItemDate = styled.div`
