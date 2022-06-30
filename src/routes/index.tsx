@@ -15,7 +15,9 @@ function Router() {
         <Route path="/" element={<Home />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/mypage" element={<MyPage />} />
-        <Route path="/rollingpaper/*" element={<RollingPaper />} />
+        <Route path="/rollingpaper">
+          <Route path=":rollingPaperId" element={<RollingPaper />} />
+        </Route>
         <Route path="/sending" element={<Sending />} />
         <Route path="/nickname" element={<CreateName />} />
       </Routes>

@@ -1,14 +1,13 @@
 import React from "react";
 
 interface ButtonProps {
-  show: boolean;
-  setShow: (show: boolean) => void;
+  setShow: () => void;
 }
 
-const StickerButton = ({ show, setShow }: ButtonProps) => {
+const StickerButton = ({ setShow }: ButtonProps) => {
   return (
     <div
-      onClick={() => setShow(!show)}
+      onClick={setShow}
       dangerouslySetInnerHTML={{
         __html: `<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="60" height="60" rx="30" fill="#F05A39"/>

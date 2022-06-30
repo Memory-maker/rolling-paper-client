@@ -36,12 +36,13 @@ const GlobalStyle = createGlobalStyle`
     min-height: -webkit-fill-available;
     
   }
-  #root{
-    height: 100vh; 
-  } 
+  html,body, #root{
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
   body {
     width:100%;
-    min-height: 100vh; 
     min-height: -webkit-fill-available;
     font-family: 'LeeSeoyun'
   }

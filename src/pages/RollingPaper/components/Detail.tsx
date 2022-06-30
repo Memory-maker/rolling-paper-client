@@ -32,6 +32,7 @@ const Detail = ({ setShowDetail, onPrev, onNext, card }: DetailProps) => {
 export default Detail;
 
 const Container = styled.div`
+  z-index: 20;
   position: absolute;
   width: 100%;
   background: rgba(255, 255, 255, 0.8);

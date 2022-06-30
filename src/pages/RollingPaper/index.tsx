@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../theme/color";
@@ -12,7 +12,8 @@ import cardDummy from "./utils/cardDummy";
 const RollingPaper = () => {
   const rollingPaperId = useParams().rollingPaperId;
   const [showDetail, setShowDetail] = useState(false);
-  const [show, setShow] = useState(false);
+  const [shareModalShow, setShareModalShow] = useState(false);
+  const [stickerModalShow, setStickerModalShow] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
 
   const handleClick = (id: number) => {
@@ -36,7 +37,11 @@ const RollingPaper = () => {
   const navigate = useNavigate();
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
-      <Header infos={dummy} setShow={setShow} />
+      <Header
+        infos={dummy}
+        setShareModalShow={() => setShareModalShow(!shareModalShow)}
+        setStickerModalShow={() => setStickerModalShow(!stickerModalShow)}
+      />
       <Content>
         {dummy.cards.map((card, index) => (
           <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
@@ -45,8 +50,8 @@ const RollingPaper = () => {
       <ButtonContainer>
         <MakeButton handleClick={() => navigate("/editor")} />
       </ButtonContainer>
-      {show && (
-        <Modal setIsModalOpen={setShow}>
+      {shareModalShow && (
+        <Modal setIsModalOpen={setShareModalShow}>
           <ModalText>복사 완료!</ModalText>
         </Modal>
       )}
@@ -71,7 +76,7 @@ const Container = styled.div<ContainerProps>`
   max-width: 480px;
   min-width: 380px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: scroll;
   background: ${(props) => (props.isDark ? colors.DARK_BG_COLOR : colors.MAIN_BG)};
 `;
@@ -84,7 +89,7 @@ const Content = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 36px;
   width: 100%;
   display: flex;
