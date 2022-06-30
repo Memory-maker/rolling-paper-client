@@ -10,9 +10,10 @@ interface HeaderProps {
   infos: RollingPaper;
   setShareModalShow: () => void;
   setStickerModalShow: () => void;
+  stickerModalShow: boolean;
 }
 
-const Header = ({ infos, setShareModalShow, setStickerModalShow }: HeaderProps) => {
+const Header = ({ infos, setShareModalShow, setStickerModalShow, stickerModalShow }: HeaderProps) => {
   return (
     <Container>
       <Title isDark={false}>
@@ -24,7 +25,7 @@ const Header = ({ infos, setShareModalShow, setStickerModalShow }: HeaderProps) 
       </Title>
       <Buttons>
         <ShareButton setShow={setShareModalShow} />
-        <StickerButton setShow={setStickerModalShow} />
+        <StickerButton stickerModalShow={stickerModalShow} setShow={setStickerModalShow} />
       </Buttons>
     </Container>
   );
