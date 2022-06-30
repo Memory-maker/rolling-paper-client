@@ -6,9 +6,9 @@ import ShareRoll from "./ShareRoll";
 
 type ObjType = {
   [index: string]: string;
-  title: string;
-  dueDate: string;
-  paperTheme: string;
+  paperTitle: string;
+  dueDt: string;
+  theme: string;
 };
 
 interface Props {
@@ -26,9 +26,9 @@ function CreateRoll({ setIsModalOpen }: Props) {
 
   const handleClickButton = () => {
     const params: ObjType = {
-      title: title,
-      dueDate: dueDate,
-      paperTheme: paperTheme,
+      paperTitle: title,
+      dueDt: dueDate + " 00:00:00",
+      theme: paperTheme,
     };
 
     const query = Object.keys(params)
@@ -38,7 +38,10 @@ function CreateRoll({ setIsModalOpen }: Props) {
     const url = `http://ec2-15-165-187-40.ap-northeast-2.compute.amazonaws.com:8080/paper?${query}`;
 
     console.log("url", url);
-    fetch(url)
+
+    fetch(url, {
+      method: "POST",
+    })
       .then((res) => res.json())
       .then((res) => {
         console.log(res);

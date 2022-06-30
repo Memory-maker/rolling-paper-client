@@ -6,6 +6,7 @@ import Editor from "../pages/Editor";
 import MyPage from "../pages/MyPage";
 import RollingPaper from "../pages/RollingPaper";
 import Sending from "../pages/Sending";
+import CreateName from "../pages/CreateName";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/rollingpaper/*" element={<RollingPaper />} />
         <Route path="/sending" element={<Sending />} />
+        <Route path="/nickname" element={<CreateName />} />
       </Routes>
     </BrowserRouter>
   );
