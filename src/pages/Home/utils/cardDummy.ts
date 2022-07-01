@@ -1,9 +1,10 @@
-interface Card {
+export interface Card {
   content: string;
   background: string;
+  rotate: string;
 }
 
-const cardDummy = [
+const cardDummy: Card[] = [
   {
     content: "사랑해",
     background: "CARD_RED",

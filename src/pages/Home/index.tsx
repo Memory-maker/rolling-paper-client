@@ -1,24 +1,23 @@
-import React, { SetStateAction, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
-import Logo from "../../components/Logo";
+import styled from "styled-components";
 import Title from "../../components/Title";
 import Card from "./components/Card";
 import cardDummy from "./utils/cardDummy";
-import { ReactComponent as KakaoIcon } from "/src/assets/svgs/kakao.svg";
-
-import { login_API, singup_API } from "../../api/user";
 import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
-import getCookie from "../../utils/cookie";
 import { colors } from "../../theme/color";
-import gsap, { Back, Bounce } from "gsap";
+import gsap, { Back } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
+<<<<<<< HEAD
+import { Card as CardProps } from "./utils/cardDummy";
+=======
 
 interface CardProps {
   content: string;
   background: string;
   rotate: string;
 }
+>>>>>>> 1c2188b7b73820d71773adc145acf646e6d6dad6
 
 const Home = () => {
   const navigate = useNavigate();

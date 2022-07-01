@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import GotoBack from "../assets/back-arrow.png";
-
 import Title from "../components/Title";
-import Logo from "../components/Logo";
 import { useNavigate } from "react-router-dom";
 import { colors, textColor } from "../theme/color";
 import Modal from "./Modal";
+import { APP_BASE_URL } from "../constants/url";
 
 interface ShareProps {
   sending_status?: boolean;
@@ -15,11 +14,33 @@ interface ShareProps {
 
 const Sending = (props: ShareProps) => {
   const navigate = useNavigate();
-  const shareStatus = true;
-  const senindgMessage = "전송 성공!";
+  let shareStatus = props.sending_status;
+  shareStatus = true;
+
   let nickname = props.nickname;
   nickname = "얌얌은 짱이야";
+
+  const sendingMessage = shareStatus ? "전송 완료!" : "전송 실패 ㅠㅠ";
   const [show, setShow] = useState(false);
+
+  const shareContents = async () => {
+    const shareData = {
+      title: `${nickname}의 롤링페이퍼`,
+      text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
+      url: `${APP_BASE_URL}/rollingpaper`,
+    };
+
+    try {
+      if (typeof window.navigator.share !== "undefined") {
+        await window.navigator.share(shareData);
+      } else {
+        //webshare api환경이 아닐 경우!
+      }
+    } catch (error: unknown) {
+      console.log(error, "error");
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -35,18 +56,19 @@ const Sending = (props: ShareProps) => {
             님에게
           </UserInfo>
 
-          <SendStatusMessage>{senindgMessage}</SendStatusMessage>
+          <SendStatusMessage>{sendingMessage}</SendStatusMessage>
         </Contents>
         <ButtonContainer>
           {shareStatus ? (
-            <ShareButton onClick={() => setShow(true)}>친구들한테 공유해볼까?</ShareButton>
+            <>
+              <ShareButton onClick={shareContents}>친구들한테 공유해볼까?</ShareButton>
+              <ShareButton onClick={() => navigate("/")}>나도 만들어볼까?</ShareButton>
+            </>
           ) : (
-            <ShareButton>다시적기</ShareButton>
-          )}
-          {shareStatus ? (
-            <ShareButton onClick={() => navigate("/")}>나도 만들어볼까?</ShareButton>
-          ) : (
-            <ShareButton>전송 취소하기</ShareButton>
+            <>
+              <ShareButton onClick={() => navigate("/editor")}>다시적기</ShareButton>
+              <ShareButton>전송 취소하기</ShareButton>
+            </>
           )}
         </ButtonContainer>
         {show && <Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>} />}
@@ -56,6 +78,7 @@ const Sending = (props: ShareProps) => {
 };
 
 export default Sending;
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
