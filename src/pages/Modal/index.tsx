@@ -1,8 +1,5 @@
-import React, { ReactNode, useRef } from "react";
-import ReactDOM, { createPortal } from "react-dom";
-
-import MakeRoll from "./MakeRoll";
-import ShareRoll from "./ShareRoll";
+import React, { useRef } from "react";
+import ReactDOM from "react-dom";
 
 import styled from "styled-components";
 
@@ -13,39 +10,43 @@ const ModalWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100vh;
-  position: absolute;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(2px);
 `;
 
+const ModalBackWrapper = styled.div`
+  width: 100%;
+`;
+
 const ModalBody = styled.div`
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
+  position: absolute;
   width: 303px;
-  /* height: 583px; */
+  z-index: 9999;
   padding: 32px 24px;
-  margin-top: 44px;
   background-color: #ffffff;
   border-radius: 20px;
   border: 1px solid #f05a39;
 `;
 
-interface ModalProps{
-  setIsModalOpen: (state:boolean) => void;
+interface ModalProps {
+  setIsModalOpen: (state: boolean) => void;
   children: React.ReactNode;
 }
-function Modal({setIsModalOpen,children}:ModalProps) {
+function Modal({ setIsModalOpen, children }: ModalProps) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const handleModalOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsModalOpen(false);
   };
 
   return ReactDOM.createPortal(
-    <ModalWrapper onClick={handleModalOutsideClick}>
+    <ModalWrapper ref={modalRef} onClick={handleModalOutsideClick}>
       <ModalBody>{children}</ModalBody>
     </ModalWrapper>,
     modalRoot,

@@ -8,7 +8,16 @@ import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import { colors } from "../../theme/color";
 import gsap, { Back } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
+<<<<<<< HEAD
 import { Card as CardProps } from "./utils/cardDummy";
+=======
+
+interface CardProps {
+  content: string;
+  background: string;
+  rotate: string;
+}
+>>>>>>> 1c2188b7b73820d71773adc145acf646e6d6dad6
 
 const Home = () => {
   const navigate = useNavigate();
@@ -160,7 +169,7 @@ const Wrapper = styled.div`
   min-width: 380px;
   width: 100%;
   height: 100vh;
-  padding: 42px;
+  padding: 32px;
   background-color: ${colors["MAIN_BG"]};
 `;
 
@@ -171,13 +180,14 @@ const Container = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  margin: 20px 0;
+  margin: 8px 0;
 `;
 
 const Content = styled.div`
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 400;
+  margin: 4px 0;
 `;
 
 const CardList = styled.div`
