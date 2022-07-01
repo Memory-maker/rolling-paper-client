@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { colors, textColor } from "../theme/color";
 import Modal from "./Modal";
 import { APP_BASE_URL } from "../constants/url";
+import { shareContent } from "../utils/share";
 
 interface ShareProps {
   sending_status?: boolean;
@@ -22,23 +23,10 @@ const Sending = (props: ShareProps) => {
 
   const sendingMessage = shareStatus ? "전송 완료!" : "전송 실패 ㅠㅠ";
   const [show, setShow] = useState(false);
-
-  const shareContents = async () => {
-    const shareData = {
-      title: `${nickname}의 롤링페이퍼`,
-      text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
-      url: `${APP_BASE_URL}/rollingpaper`,
-    };
-
-    try {
-      if (typeof window.navigator.share !== "undefined") {
-        await window.navigator.share(shareData);
-      } else {
-        //webshare api환경이 아닐 경우!
-      }
-    } catch (error: unknown) {
-      console.log(error, "error");
-    }
+  const shareData = {
+    title: `${nickname}의 롤링페이퍼`,
+    text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
+    url: `${APP_BASE_URL}/rollingpaper`,
   };
 
   return (
@@ -61,7 +49,7 @@ const Sending = (props: ShareProps) => {
         <ButtonContainer>
           {shareStatus ? (
             <>
-              <ShareButton onClick={shareContents}>친구들한테 공유해볼까?</ShareButton>
+              <ShareButton onClick={() => shareContent(shareData)}>친구들한테 공유해볼까?</ShareButton>
               <ShareButton onClick={() => navigate("/")}>나도 만들어볼까?</ShareButton>
             </>
           ) : (
