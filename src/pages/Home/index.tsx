@@ -8,16 +8,7 @@ import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import { colors } from "../../theme/color";
 import gsap, { Back } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
-<<<<<<< HEAD
 import { Card as CardProps } from "./utils/cardDummy";
-=======
-
-interface CardProps {
-  content: string;
-  background: string;
-  rotate: string;
-}
->>>>>>> 1c2188b7b73820d71773adc145acf646e6d6dad6
 
 const Home = () => {
   const navigate = useNavigate();
