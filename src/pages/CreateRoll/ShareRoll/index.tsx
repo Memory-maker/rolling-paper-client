@@ -1,9 +1,9 @@
+import styled from "styled-components";
 import { useCallback } from "react";
-
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
-import styled from "styled-components";
 import { modalColors } from "../../../theme/color";
+import Button from "../../../components/Button";
 
 interface Props {
   paperUrl: string;
@@ -47,8 +47,10 @@ function ShareRoll({ paperUrl }: Props) {
         </InputWrapper>
 
         <Button type="button" onClick={handleClickButton}>
-          <Span>공유하기</Span>
-          <ShareIcon />
+          공유하기
+          <ShareIcons>
+            <ShareIcon />
+          </ShareIcons>
         </Button>
       </form>
     </Wrapper>
@@ -56,6 +58,11 @@ function ShareRoll({ paperUrl }: Props) {
 }
 
 export default ShareRoll;
+
+const ShareIcons = styled.div`
+  display: inline-block;
+  padding-left: 10px;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -86,6 +93,7 @@ const Label = styled.label`
 
 const InputWrapper = styled.div`
   position: relative;
+  margin-bottom: 28px;
 `;
 
 const IconButton = styled.button`
@@ -114,21 +122,4 @@ const InputField = styled.input`
   &::-webkit-calendar-picker-indicator {
     filter: invert(52%) sepia(36%) saturate(7081%) hue-rotate(341deg) brightness(100%) contrast(89%);
   }
-`;
-
-const Button = styled.button`
-  width: 263px;
-  height: 44px;
-  margin-top: 28px;
-  font-size: 24px;
-  line-height: 24px;
-  background: ${modalColors["MODAL_POINT"]};
-  color: ${modalColors["MODAL_WHITE"]};
-  border: 1px solid ${modalColors["MODAL_POINT"]};
-  border-radius: 20px;
-  cursor: pointer;
-`;
-
-const Span = styled.span`
-  padding: 0 15px;
 `;

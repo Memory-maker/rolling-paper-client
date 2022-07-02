@@ -4,9 +4,12 @@ import GotoBack from "../assets/back-arrow.png";
 import Title from "../components/Title";
 import { useNavigate } from "react-router-dom";
 import { colors, textColor } from "../theme/color";
-import Modal from "./Modal";
 import { APP_BASE_URL } from "../constants/url";
 import { shareContent } from "../utils/share";
+import MoalContainer from "./ModalContainer";
+import ShareRoll from "../pages/CreateRoll/ShareRoll/index";
+
+import Button from "../components/Button";
 
 interface ShareProps {
   sending_status?: boolean;
@@ -15,11 +18,10 @@ interface ShareProps {
 
 const Sending = (props: ShareProps) => {
   const navigate = useNavigate();
+  let nickname = props.nickname;
+  nickname = "레몬";
   let shareStatus = props.sending_status;
   shareStatus = true;
-
-  let nickname = props.nickname;
-  nickname = "얌얌은 짱이야";
 
   const sendingMessage = shareStatus ? "전송 완료!" : "전송 실패 ㅠㅠ";
   const [show, setShow] = useState(false);
@@ -27,6 +29,14 @@ const Sending = (props: ShareProps) => {
     title: `${nickname}의 롤링페이퍼`,
     text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
     url: `${APP_BASE_URL}/rollingpaper`,
+  };
+
+  const onHandleShare = () => {
+    if (typeof window.navigator.share !== "undefined") {
+      shareContent(shareData);
+    } else {
+      //
+    }
   };
 
   return (
@@ -49,16 +59,21 @@ const Sending = (props: ShareProps) => {
         <ButtonContainer>
           {shareStatus ? (
             <>
-              <ShareButton onClick={() => shareContent(shareData)}>친구들한테 공유해볼까?</ShareButton>
-              <ShareButton onClick={() => navigate("/")}>나도 만들어볼까?</ShareButton>
+              <Button onClick={onHandleShare}>친구들한테 공유해볼까?</Button>
+              <Button onClick={() => navigate("/")}>나도 만들어볼까?</Button>
             </>
           ) : (
             <>
-              <ShareButton onClick={() => navigate("/editor")}>다시적기</ShareButton>
-              <ShareButton>전송 취소하기</ShareButton>
+              <Button onClick={() => navigate("/editor")}>다시적기</Button>
+              <Button>전송 취소하기</Button>
             </>
           )}
         </ButtonContainer>
+
+        {/* <MoalContainer>
+          <ShareRoll />
+        </MoalContainer> */}
+
         {show && <Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>} />}
       </Main>
     </Container>
@@ -121,26 +136,6 @@ const SendStatusMessage = styled.p`
 const Username = styled.p`
   color: ${textColor.TEXT_YELLOW_COLOR};
   margin-right: 10px;
-`;
-
-const ShareButton = styled.button`
-  width: 263px;
-  height: 44px;
-  left: 56px;
-  top: 555px;
-
-  margin-bottom: 16px;
-  background: ${colors.POINT_COLOR};
-  border: 1px solid;
-  border-color: ${colors.POINT_COLOR};
-  border-radius: 20px;
-
-  font-family: "LeeSeoyun";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 24px;
-  color: ${colors.WHITE_COLOR};
 `;
 
 const ButtonContainer = styled.div`

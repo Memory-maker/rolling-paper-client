@@ -1,6 +1,7 @@
 import React from "react";
 
-const ShareButton = () => {
+//share Button 네이밍이 좀 구체적이지 않아서 헷갈림! 직관적으로 ShareIconButton으로 변경함
+const ShareIconButton = () => {
   return (
     <div
       dangerouslySetInnerHTML={{
@@ -14,4 +15,4 @@ const ShareButton = () => {
   );
 };
 
-export default ShareButton;
+export default ShareIconButton;

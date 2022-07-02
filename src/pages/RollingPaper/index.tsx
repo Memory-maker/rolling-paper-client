@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../../theme/color";
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import Card from "./components/Card";
 import Detail from "./components/Detail";
 import Header from "./components/Header";

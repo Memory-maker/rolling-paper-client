@@ -37,7 +37,7 @@ interface ModalProps {
   setIsModalOpen: (state: boolean) => void;
   children: React.ReactNode;
 }
-function Modal({ setIsModalOpen, children }: ModalProps) {
+function ModalContainer({ setIsModalOpen, children }: ModalProps) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -53,4 +53,4 @@ function Modal({ setIsModalOpen, children }: ModalProps) {
   );
 }
 
-export default Modal;
+export default ModalContainer;

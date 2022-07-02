@@ -27,7 +27,7 @@ const colors = {
 
   KAKAO_COLOR: "#FEE500",
   WHITE_COLOR: "#ffff",
-} as { [id: string]: string };
+};
 
 const modalColors = {
   MODAL_BLACK: "#000000",

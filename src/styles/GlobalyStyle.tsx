@@ -54,6 +54,7 @@ const GlobalStyle = createGlobalStyle`
     background: inherit;
     outline: none;
     font-family: inherit;
+    cursor:pointer;
   }
   input{
     font-family: inherit;

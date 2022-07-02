@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import MakeRoll from "./MakeRoll";
 import ShareRoll from "./ShareRoll";
 
