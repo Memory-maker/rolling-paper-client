@@ -5,10 +5,9 @@ import Title from "../components/Title";
 import { useNavigate } from "react-router-dom";
 import { colors, textColor } from "../theme/color";
 import { APP_BASE_URL } from "../constants/url";
-import { shareContent } from "../utils/share";
+import { shareContentWithWebapi } from "../utils/share";
 import MoalContainer from "./ModalContainer";
-import ShareRoll from "../pages/CreateRoll/ShareRoll/index";
-
+import ShareModal from "../components/shared/shareModal";
 import Button from "../components/Button";
 
 interface ShareProps {
@@ -25,6 +24,7 @@ const Sending = (props: ShareProps) => {
 
   const sendingMessage = shareStatus ? "전송 완료!" : "전송 실패 ㅠㅠ";
   const [show, setShow] = useState(false);
+
   const shareData = {
     title: `${nickname}의 롤링페이퍼`,
     text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
@@ -33,9 +33,9 @@ const Sending = (props: ShareProps) => {
 
   const onHandleShare = () => {
     if (typeof window.navigator.share !== "undefined") {
-      shareContent(shareData);
+      shareContentWithWebapi(shareData);
     } else {
-      //
+      setShow(!show);
     }
   };
 
@@ -70,11 +70,11 @@ const Sending = (props: ShareProps) => {
           )}
         </ButtonContainer>
 
-        {/* <MoalContainer>
-          <ShareRoll />
-        </MoalContainer> */}
-
-        {show && <Modal setIsModalOpen={setShow} children={<ModalText>복사 완료!</ModalText>} />}
+        {show && (
+          <MoalContainer setIsModalOpen={setShow}>
+            <ShareModal paperUrl={""} />
+          </MoalContainer>
+        )}
       </Main>
     </Container>
   );
@@ -142,9 +142,4 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const ModalText = styled.div`
-  font-size: 48px;
-  text-align: center;
 `;

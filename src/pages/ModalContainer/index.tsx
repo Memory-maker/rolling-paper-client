@@ -17,10 +17,6 @@ const ModalWrapper = styled.div`
   backdrop-filter: blur(2px);
 `;
 
-const ModalBackWrapper = styled.div`
-  width: 100%;
-`;
-
 const ModalBody = styled.div`
   /* display: flex; */
   /* flex-direction: column; */
@@ -41,7 +37,7 @@ function ModalContainer({ setIsModalOpen, children }: ModalProps) {
   const modalRoot = document.getElementById("modal") as HTMLDivElement;
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const handleModalOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleModalOutsideClick = () => {
     setIsModalOpen(false);
   };
 

@@ -2,22 +2,19 @@ import styled from "styled-components";
 import { useCallback } from "react";
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
-import { modalColors } from "../../../theme/color";
-import Button from "../../../components/Button";
+import { modalColors } from "../../theme/color";
+import Button from "../Button";
+import { APP_BASE_URL } from "../../constants/url";
+import { shareContentWithWebapi } from "../../utils/share";
 
-interface Props {
+interface ShareModalProps {
   paperUrl: string;
+  modalTitle?: string;
 }
 
-function ShareRoll({ paperUrl }: Props) {
+function ShareModal({ paperUrl, modalTitle = "" }: ShareModalProps) {
   // const [visible, setVisible] = useState(true);
-  const shareUrl = `https://rolling-paper-client-blue.vercel.app/rollingpaper/11${paperUrl}`;
-
-  // const shareData = {
-  //   title: "롤링 페이퍼",
-  //   text: "롤링 페이퍼",
-  //   url: shareUrl,
-  // };
+  const shareUrl = `${APP_BASE_URL}/${paperUrl}`;
 
   function copyToClipboard() {
     const t = document.createElement("textarea");
@@ -28,16 +25,30 @@ function ShareRoll({ paperUrl }: Props) {
     document.body.removeChild(t);
   }
 
+  // form이면 버튼 누를시 작동 default submit니까 공유하기 버튼시 공유되도록 아래처럼 변환함.
   const handleClickButton = useCallback(() => {
     copyToClipboard();
     // setVisible(false);
   }, []);
 
+  const onHandleForm = () => {
+    //공유하기 눌렀을 시 로직
+
+    /* shareData props Exmaple
+    const shareData = {
+       title: `${nickname}의 롤링페이퍼`,
+      text: `${nickname}와 함께 롤링페이퍼를 써볼까요?`,
+      url: `${APP_BASE_URL}/rollingpaper`,
+    };
+  */
+    shareContentWithWebapi(shareData);
+  };
+
   return (
     <Wrapper onClick={(e) => e.stopPropagation()}>
-      <Title>롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?</Title>
+      <ModalTitle>{modalTitle}</ModalTitle>
 
-      <form>
+      <form onSubmit={onHandleForm}>
         <Label>롤링페이퍼 링크</Label>
         <InputWrapper>
           <InputField type="text" name="paperUrl" value={shareUrl} readOnly />
@@ -46,7 +57,7 @@ function ShareRoll({ paperUrl }: Props) {
           </IconButton>
         </InputWrapper>
 
-        <Button type="button" onClick={handleClickButton}>
+        <Button type="button">
           공유하기
           <ShareIcons>
             <ShareIcon />
@@ -57,7 +68,7 @@ function ShareRoll({ paperUrl }: Props) {
   );
 }
 
-export default ShareRoll;
+export default ShareModal;
 
 const ShareIcons = styled.div`
   display: inline-block;
@@ -73,7 +84,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h2`
+const ModalTitle = styled.h2`
   font-weight: 400;
   font-size: 24px;
   line-height: 24px;
@@ -100,7 +111,6 @@ const IconButton = styled.button`
   position: absolute;
   right: 14px;
   top: 26px;
-  cursor: pointer;
 `;
 
 const InputField = styled.input`

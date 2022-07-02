@@ -4,7 +4,7 @@ interface shareData {
   url: string;
 }
 
-export const shareContent = async (data: shareData) => {
+export const shareContentWithWebapi = async (data: shareData) => {
   try {
     if (typeof window.navigator.share !== "undefined") {
       await window.navigator.share(data);
