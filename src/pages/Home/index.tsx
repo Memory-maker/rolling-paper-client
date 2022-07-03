@@ -9,29 +9,33 @@ import { colors } from "../../theme/color";
 import gsap, { Back } from "gsap";
 import Sticker, { StickerProps } from "../../components/Sticker";
 import { Card as CardProps } from "./utils/cardDummy";
+import { login_API } from "../../api/user";
 
 const Home = () => {
   const navigate = useNavigate();
   const kakaoJsKey = import.meta.env.VITE_JS_KEY;
-  const [token, setToken] = useState("");
-  const [data, setData] = useState<kakaoProfile | null>(null);
+  const [kakaoEmail, setKakaoEmail] = useState<string | null>(null);
+
   const logoRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const logoQ = gsap.utils.selector(logoRef);
   const cardQ = gsap.utils.selector(cardRef);
 
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(kakaoJsKey);
+    }
+  }, [kakaoJsKey]);
+
   const kakaoLogin = () => {
     window.Kakao.Auth.login({
-      success: function (serverResponse: kakaoToken) {
+      scope: "account_email",
+      success: function () {
         window.Kakao.API.request({
           url: "/v2/user/me",
-          success: function ({ kakao_account, id }: kakaoServerRes) {
-            // const userData = {
-            //   id,
-            //   profile: kakao_account.profile,
-            // };
-            // setData(userData);
-            navigate("/mypage");
+          success: function ({ kakao_account }: kakaoServerRes) {
+            const { email } = kakao_account;
+            setKakaoEmail(email);
           },
           fail: function (error: unknown) {
             console.log(error);
@@ -43,6 +47,17 @@ const Home = () => {
       },
     });
   };
+
+  const login = async (kakaoEmail: string) => {
+    const response = await login_API(kakaoEmail);
+    console.log(response);
+  };
+
+  useEffect(() => {
+    if (kakaoEmail) {
+      login(kakaoEmail);
+    }
+  }, [kakaoEmail]);
 
   // const login = async () => {
   //   // 1. 쿠키에서 세션 아이디 꺼낸 뒤, 로그인 api 요청
@@ -66,15 +81,6 @@ const Home = () => {
   // const onHandleClick = () => {
   //   login();
   // };
-
-  useEffect(() => {
-    if (!window.Kakao.isInitialized()) {
-      // JavaScript key를 인자로 주고 SDK 초기화
-      window.Kakao.init(kakaoJsKey);
-      // SDK 초기화 여부를 확인하자.
-      console.log(window.Kakao.isInitialized());
-    }
-  }, [kakaoJsKey]);
 
   useEffect(() => {
     if (logoRef.current) {

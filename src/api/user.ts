@@ -1,32 +1,35 @@
 import axios from "axios";
 import { kakaoProfile } from "../types/login";
 
-const BASE_URL = "http://localhost:8080/";
+const BASE_URL = "http://ec2-15-165-187-40.ap-northeast-2.compute.amazonaws.com:8080";
 const SIGNUP = "/user/signup";
-const LOGIN = "/user/signin";
+const LOGIN = "/member/login";
+const NICKNAME = "/member";
 
 export const axiosInstance = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
-    withCredentials: true,
   },
-
+  // withCredentials: true,
   timeout: 2500,
 });
 
-export const login_API = async (sessionId: string) => {
-  const instance = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-      "Content-Type": "application/json",
-      withCredentials: true,
-      sessionId,
-    },
-    timeout: 2500,
-  });
+export const login_API = async (username: string | null) => {
   try {
-    return await instance.post(LOGIN);
+    if (!username) return;
+    const data = { username };
+    return await axiosInstance.post(LOGIN, data);
+  } catch (error) {
+    console.log(error, "error");
+  }
+};
+
+export const nickname_API = async (nickname: string | null) => {
+  try {
+    if (!nickname) return;
+    const data = { nickname };
+    return await axiosInstance.put(NICKNAME, data);
   } catch (error) {
     console.log(error, "error");
   }
