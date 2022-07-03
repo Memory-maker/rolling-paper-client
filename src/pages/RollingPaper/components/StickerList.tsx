@@ -11,7 +11,7 @@ const StickerList = ({ addSticker }: StickerListProps) => {
     <Container>
       <Stickers>
         {Object.values(StickerType).map((type) => (
-          <Sticker onCreate={() => addSticker(type)} type={type} key={type} />
+          <Sticker onCreate={() => addSticker(type)} stickerAttr={{ type: type }} key={type} />
         ))}
       </Stickers>
     </Container>

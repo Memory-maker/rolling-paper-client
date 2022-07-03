@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import Sticker, { StickerProps, StickerType } from "../../components/Sticker";
+import Sticker, { StickerAttr, StickerProps, StickerType } from "../../components/Sticker";
 import { colors } from "../../theme/color";
 import Modal from "../Modal";
 import Card from "./components/Card";
@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import MakeButton from "./components/MakeButton";
 import StickerList from "./components/StickerList";
 import cardDummy from "./utils/cardDummy";
-import { v4 as uuidv4 } from "uuid";
 
 const RollingPaper = () => {
   const rollingPaperId = useParams().rollingPaperId;
@@ -18,14 +17,13 @@ const RollingPaper = () => {
   const [shareModalShow, setShareModalShow] = useState(false);
   const [stickerModalShow, setStickerModalShow] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
-  const [stickers, setStickers] = useState<{ [id: string]: StickerProps }>({
-    a: { type: StickerType.heart, x: 0, y: 130 },
-    b: { type: StickerType.bear, x: 150, y: 160, rotate: 15 },
-  });
+  const [stickers, setStickers] = useState<StickerAttr[]>([
+    { type: StickerType.heart, x: 0, y: 130 },
+    { type: StickerType.bear, x: 150, y: 160, rotate: 15 },
+  ]);
 
   const addSticker = (type: StickerType) => {
-    const newId = uuidv4();
-    setStickers({ ...stickers, [newId]: { type: type, x: 200, y: 200, changeMode: true } });
+    setStickers({ ...stickers });
   };
 
   const handleClick = (id: number) => {
@@ -56,10 +54,13 @@ const RollingPaper = () => {
         stickerModalShow={stickerModalShow}
       />
       <Content>
-        {Object.keys(stickers).map((id) => {
-          const config = { ...stickers[id], changeMode: stickerModalShow };
-          return <Sticker key={id} {...config} />;
-        })}
+        <StickerContent>
+          {stickers.map((sticker, index) => {
+            const config = { stickerAttr: { ...sticker, num: index }, changeMode: stickerModalShow };
+            return <Sticker key={index} {...config} />;
+          })}
+        </StickerContent>
+
         {dummy.cards.map((card, index) => (
           <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
         ))}
@@ -99,8 +100,11 @@ const Container = styled.div<ContainerProps>`
   background: ${(props) => (props.isDark ? colors.DARK_BG_COLOR : colors.MAIN_BG)};
 `;
 
+const StickerContent = styled.div`
+  position: absolute;
+  z-index: 10;
+`;
 const Content = styled.div`
-  position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 0 auto;

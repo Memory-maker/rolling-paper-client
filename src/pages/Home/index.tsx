@@ -7,7 +7,7 @@ import cardDummy from "./utils/cardDummy";
 import { kakaoToken, kakaoServerRes, kakaoProfile } from "../../types/login";
 import { colors } from "../../theme/color";
 import gsap, { Back } from "gsap";
-import Sticker, { StickerProps, StickerType } from "../../components/Sticker";
+import Sticker, { StickerAttr, StickerProps, StickerType } from "../../components/Sticker";
 import useAnimate from "./utils/useAnimate";
 
 interface CardProps {
@@ -76,7 +76,7 @@ const Home = () => {
     }
   }, [kakaoJsKey]);
 
-  const stickers: StickerProps[] = [
+  const stickers: StickerAttr[] = [
     { type: StickerType.heart, rotate: 0, x: 68, y: -5 },
     { type: StickerType.bear, rotate: -7, x: 11, y: 83 },
     { type: StickerType.clova, rotate: 0, x: 160, y: 78 },
@@ -93,8 +93,8 @@ const Home = () => {
         </TitleWrapper>
 
         <CardList>
-          {stickers.map((sticker: StickerProps, index) => (
-            <Sticker key={index} {...sticker} />
+          {stickers.map((sticker: StickerAttr, index) => (
+            <Sticker key={index} stickerAttr={sticker} />
           ))}
           {cardDummy.map((props: CardProps, index) => (
             <Card key={index} content={props.content} background={props.background} rotate={props.rotate} />
