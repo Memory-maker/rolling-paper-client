@@ -1,14 +1,14 @@
 import React from "react";
 
 interface ButtonProps {
-  show: boolean;
-  setShow: (show: boolean) => void;
+  setShow: () => void;
+  stickerModalShow: boolean;
 }
 
-const StickerButton = ({ show, setShow }: ButtonProps) => {
-  return (
+const StickerButton = ({ setShow, stickerModalShow }: ButtonProps) => {
+  return !stickerModalShow ? (
     <div
-      onClick={() => setShow(!show)}
+      onClick={setShow}
       dangerouslySetInnerHTML={{
         __html: `<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
 <rect width="60" height="60" rx="30" fill="#F05A39"/>
@@ -16,7 +16,18 @@ const StickerButton = ({ show, setShow }: ButtonProps) => {
 </svg>
 `,
       }}
-    ></div>
+    />
+  ) : (
+    <div
+      onClick={setShow}
+      dangerouslySetInnerHTML={{
+        __html: `<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="60" height="60" rx="30" fill="#F05A39"/>
+        <path d="M17 28.5L27.8372 39.5924L42.5 21.8888" stroke="white" stroke-width="5"/>
+        </svg>        
+`,
+      }}
+    />
   );
 };
 

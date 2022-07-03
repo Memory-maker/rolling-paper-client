@@ -1,19 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Sticker, { StickerProps, StickerType } from "../../components/Sticker";
 import { colors } from "../../theme/color";
 import Modal from "../Modal";
 import Card from "./components/Card";
 import Detail from "./components/Detail";
 import Header from "./components/Header";
 import MakeButton from "./components/MakeButton";
+import StickerList from "./components/StickerList";
 import cardDummy from "./utils/cardDummy";
+import { v4 as uuidv4 } from "uuid";
 
 const RollingPaper = () => {
   const rollingPaperId = useParams().rollingPaperId;
   const [showDetail, setShowDetail] = useState(false);
-  const [show, setShow] = useState(false);
+  const [shareModalShow, setShareModalShow] = useState(false);
+  const [stickerModalShow, setStickerModalShow] = useState(false);
   const [cardIndex, setCardIndex] = useState<number>(0);
+  const [stickers, setStickers] = useState<{ [id: string]: StickerProps }>({
+    a: { type: StickerType.heart, x: 0, y: 130 },
+    b: { type: StickerType.bear, x: 150, y: 160, rotate: 15 },
+  });
+
+  const addSticker = (type: StickerType) => {
+    const newId = uuidv4();
+    setStickers({ ...stickers, [newId]: { type: type, x: 200, y: 200, changeMode: true } });
+  };
 
   const handleClick = (id: number) => {
     setShowDetail(true);
@@ -36,8 +49,17 @@ const RollingPaper = () => {
   const navigate = useNavigate();
   return (
     <Container isDark={dummy.theme === "dark" ? true : false}>
-      <Header infos={dummy} setShow={setShow} />
+      <Header
+        infos={dummy}
+        setShareModalShow={() => setShareModalShow(!shareModalShow)}
+        setStickerModalShow={() => setStickerModalShow(!stickerModalShow)}
+        stickerModalShow={stickerModalShow}
+      />
       <Content>
+        {Object.keys(stickers).map((id) => {
+          const config = { ...stickers[id], changeMode: stickerModalShow };
+          return <Sticker key={id} {...config} />;
+        })}
         {dummy.cards.map((card, index) => (
           <Card index={index} key={index} card={card} handleClick={() => handleClick(index)} />
         ))}
@@ -45,11 +67,12 @@ const RollingPaper = () => {
       <ButtonContainer>
         <MakeButton handleClick={() => navigate("/editor")} />
       </ButtonContainer>
-      {show && (
-        <Modal setIsModalOpen={setShow}>
+      {shareModalShow && !stickerModalShow && (
+        <Modal setIsModalOpen={setShareModalShow}>
           <ModalText>복사 완료!</ModalText>
         </Modal>
       )}
+      {stickerModalShow && !shareModalShow && <StickerList addSticker={addSticker} />}
       {showDetail && (
         <Detail card={dummy.cards[cardIndex]} onPrev={onPrev} onNext={onNext} setShowDetail={setShowDetail} />
       )}
@@ -71,12 +94,13 @@ const Container = styled.div<ContainerProps>`
   max-width: 480px;
   min-width: 380px;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: scroll;
   background: ${(props) => (props.isDark ? colors.DARK_BG_COLOR : colors.MAIN_BG)};
 `;
 
 const Content = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: 0 auto;
@@ -84,7 +108,7 @@ const Content = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  position: fixed;
+  position: absolute;
   bottom: 36px;
   width: 100%;
   display: flex;

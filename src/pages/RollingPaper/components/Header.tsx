@@ -8,10 +8,12 @@ import StickerButton from "./StickerButton";
 
 interface HeaderProps {
   infos: RollingPaper;
-  setShow: (show: boolean) => void;
+  setShareModalShow: () => void;
+  setStickerModalShow: () => void;
+  stickerModalShow: boolean;
 }
 
-const Header = ({ infos, setShow }: HeaderProps) => {
+const Header = ({ infos, setShareModalShow, setStickerModalShow, stickerModalShow }: HeaderProps) => {
   return (
     <Container>
       <Title isDark={false}>
@@ -22,7 +24,8 @@ const Header = ({ infos, setShow }: HeaderProps) => {
         <span>"{infos.title}"</span>
       </Title>
       <Buttons>
-        <ShareButton setShow={setShow} />
+        <ShareButton setShow={setShareModalShow} />
+        <StickerButton stickerModalShow={stickerModalShow} setShow={setStickerModalShow} />
       </Buttons>
     </Container>
   );
@@ -31,6 +34,7 @@ const Header = ({ infos, setShow }: HeaderProps) => {
 export default Header;
 
 const Container = styled.div`
+  z-index: 10;
   position: sticky;
   top: 0;
   left: 0;
@@ -39,6 +43,7 @@ const Container = styled.div`
   padding: 18px 16px;
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
 `;
 
 interface TitleProps {
@@ -59,7 +64,7 @@ const NickName = styled.div`
 `;
 
 const Buttons = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-row-gap: 8px;
 `;

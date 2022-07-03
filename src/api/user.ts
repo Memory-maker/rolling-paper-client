@@ -1,41 +1,15 @@
 import axios from "axios";
-import { kakaoProfile } from "../types/login";
+import { BASE_URL } from ".";
 
-const BASE_URL = "http://localhost:8080/";
-const SIGNUP = "/user/signup";
-const LOGIN = "/user/signin";
+interface LoginRequest {
+  accessToken: string;
+  userId: string;
+  refreshToken: string;
+}
 
-export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-    withCredentials: true,
-  },
-
-  timeout: 2500,
-});
-
-export const login_API = async (sessionId: string) => {
-  const instance = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-      "Content-Type": "application/json",
-      withCredentials: true,
-      sessionId,
-    },
-    timeout: 2500,
-  });
-  try {
-    return await instance.post(LOGIN);
-  } catch (error) {
-    console.log(error, "error");
-  }
-};
-
-export const singup_API = async (userData: kakaoProfile | null) => {
-  try {
-    return await axiosInstance.post(SIGNUP, userData);
-  } catch (err: unknown) {
-    console.log(err, "err");
-  }
-};
+// export const login = ({ accessToken, userId, refreshToken }: LoginRequest) => {
+//   if (!localStorage.getItem("token")) {
+//     axios.post(`${BASE_URL}login`);
+//     localStorage.setItem("token", accessToken);
+//   }
+// };

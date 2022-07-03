@@ -105,7 +105,7 @@ const InputField = styled.input`
   font-weight: 400;
 
   &:focus {
-    outline: 1px solid ${modalColors["MODAL_POINT"]};
+    outline: none;
   }
 
   &::-webkit-calendar-picker-indicator {
