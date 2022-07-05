@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import MakeRoll from "./MakeRoll";
-import ShareRoll from "./ShareRoll";
+import ShareRoll from "../../components/shared/shareModal";
 
 type ObjType = {
   [index: string]: string;
@@ -53,6 +53,8 @@ function CreateRoll({ setIsModalOpen }: Props) {
       });
   };
 
+  const modalTitle = "롤링 페이퍼를 만들었어요! 이제 친구들에게 써달라고 말해볼까요?";
+
   return (
     <Modal setIsModalOpen={setIsModalOpen}>
       {!shareRollVisible && (
@@ -63,7 +65,7 @@ function CreateRoll({ setIsModalOpen }: Props) {
           setPaperTheme={setPaperTheme}
         />
       )}
-      {shareRollVisible && <ShareRoll paperUrl={paperUrl} />}
+      {shareRollVisible && <ShareRoll paperUrl={paperUrl} modalTitle={modalTitle} />}
     </Modal>
   );
 }

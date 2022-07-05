@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Sticker, { StickerAttr, StickerProps, StickerType } from "../../components/Sticker";
 import { colors } from "../../theme/color";
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 import Card from "./components/Card";
 import Detail from "./components/Detail";
 import Header from "./components/Header";

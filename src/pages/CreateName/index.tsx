@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Modal from "../Modal";
+import Modal from "../ModalContainer";
 
 import styled from "styled-components";
 import { modalColors } from "../../theme/color";

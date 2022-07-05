@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../../theme/color";
-import Modal from "../../Modal";
+import Modal from "../../ModalContainer";
 import { RollingPaper } from "../utils/RollingPaper.type";
 import ShareButton from "./ShareButton";
 import StickerButton from "./StickerButton";
