@@ -4,7 +4,7 @@ import styled from "styled-components";
 const StyledButton = styled.button`
   width: 263px;
   height: 44px;
-  margin-bottom: 16px; //가변 값으로 Props 설정해도 됨
+  margin-bottom: 16px;
 
   font-family: "LeeSeoyun";
   font-style: normal;

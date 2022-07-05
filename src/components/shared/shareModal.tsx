@@ -1,11 +1,13 @@
 import styled from "styled-components";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ReactComponent as ShareIcon } from "/src/assets/svgs/share.svg";
 import { ReactComponent as ClipboardIcon } from "/src/assets/svgs/Text-files.svg";
 import { modalColors } from "../../theme/color";
 import Button from "../Button";
 import { APP_BASE_URL } from "../../constants/url";
 import { shareContentWithWebapi } from "../../utils/share";
+import ModalContainer from "../../pages/ModalContainer";
+import KakaoShareButton from "../kakaoShareButton";
 
 interface ShareModalProps {
   paperUrl: string;
@@ -13,7 +15,10 @@ interface ShareModalProps {
 }
 
 function ShareModal({ paperUrl, modalTitle = "" }: ShareModalProps) {
-  // const [visible, setVisible] = useState(true);
+  const [showKakaoBtn, setShowkakaoBtn] = useState(false);
+  const kakaoJsKey = import.meta.env.VITE_JS_KEY;
+  const kakaoShareBtn = useRef();
+
   const shareUrl = `${APP_BASE_URL}/${paperUrl}`;
 
   function copyToClipboard() {
@@ -25,15 +30,11 @@ function ShareModal({ paperUrl, modalTitle = "" }: ShareModalProps) {
     document.body.removeChild(t);
   }
 
-  // form이면 버튼 누를시 작동 default submit니까 공유하기 버튼시 공유되도록 아래처럼 변환함.
   const handleClickButton = useCallback(() => {
     copyToClipboard();
-    // setVisible(false);
   }, []);
 
-  const onHandleForm = () => {
-    //공유하기 눌렀을 시 로직
-
+  const onHandleShare = async () => {
     /* shareData props Exmaple
     const shareData = {
        title: `${nickname}의 롤링페이퍼`,
@@ -41,29 +42,49 @@ function ShareModal({ paperUrl, modalTitle = "" }: ShareModalProps) {
       url: `${APP_BASE_URL}/rollingpaper`,
     };
   */
-    shareContentWithWebapi(shareData);
+    if (typeof window.navigator.share !== "undefined") {
+      shareContentWithWebapi(shareData);
+    } else {
+      //webs api환경 아닐시!
+      setShowkakaoBtn(!showKakaoBtn);
+    }
   };
+
+  useEffect(() => {
+    if (!window.Kakao.isInitialized()) {
+      // JavaScript key를 인자로 주고 SDK 초기화
+      window.Kakao.init(kakaoJsKey);
+      // SDK 초기화 여부를 확인하자.
+      console.log(window.Kakao.isInitialized());
+    }
+  }, [kakaoJsKey]);
 
   return (
     <Wrapper onClick={(e) => e.stopPropagation()}>
       <ModalTitle>{modalTitle}</ModalTitle>
 
-      <form onSubmit={onHandleForm}>
-        <Label>롤링페이퍼 링크</Label>
-        <InputWrapper>
-          <InputField type="text" name="paperUrl" value={shareUrl} readOnly />
-          <IconButton type="button" onClick={handleClickButton}>
-            <ClipboardIcon />
-          </IconButton>
-        </InputWrapper>
+      {showKakaoBtn ? (
+        <KakaoShareButton />
+      ) : (
+        // <Button onClick={kakaoShare}>카카오로 공유하기</Button>
+        <form>
+          <Label>롤링페이퍼 링크</Label>
 
-        <Button type="button">
-          공유하기
-          <ShareIcons>
-            <ShareIcon />
-          </ShareIcons>
-        </Button>
-      </form>
+          <InputWrapper>
+            <InputField type="text" name="paperUrl" value={shareUrl} readOnly />
+            <IconButton type="button" onClick={handleClickButton}>
+              <ClipboardIcon />
+            </IconButton>
+          </InputWrapper>
+
+          <Button type="button" onClick={onHandleShare}>
+            공유하기
+            <ShareIcons>
+              <ShareIcon />
+            </ShareIcons>
+          </Button>
+        </form>
+      )}
     </Wrapper>
   );
 }
